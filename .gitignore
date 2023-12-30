@@ -6,6 +6,9 @@
 /storage/*.key
 /vendor
 .env
+.env.example
+*cache
+todo
 .env.backup
 .env.production
 .phpunit.result.cache
@@ -17,3 +20,4 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+
