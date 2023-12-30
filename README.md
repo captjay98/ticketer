@@ -24,7 +24,7 @@ __Project Status__: _in progress_
 ## Technologies Used
   - __Frontend__ <br/>
     <img height=50 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg"/>
-    <img height=50 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg"/>
+    <img height=50 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original-wordmark.svg"/>
 
   - __Backend__ <br/>
     <img height=50 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-plain.svg"/>
