@@ -63,14 +63,14 @@ In the project repository on github click the fork button in the upper right cor
 - __Clone the forked repository to your local machine__
 
     ```ruby
-    git clone https://github.com/captjay98/jobsite.git
+    git clone https://github.com/captjay98/ticketer.git
     ```
 - __Navigate to the local directory and open in your IDE/ Text Editor__
 
 - __In the IDE terminal set upstream branch__
 
     ```ruby
-    git remote add upstream https://github.com/captjay98/jobsite.git
+    git remote add upstream https://github.com/captjay98/ticketer.git
     ```
 - __Pull upstream__
 
