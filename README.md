@@ -2,7 +2,7 @@
     <img height= "300px" src="https://i.imgur.com/JG1dPC6.png">
 <p/>
 
- A Job Platform
+ A Train Ticket Booking Platform
 
 ## Table of Content
 * [Overview](#overview)
