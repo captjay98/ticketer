@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
@@ -49,13 +50,13 @@ Route::get('trips/{trip_id}/coaches/{tickettype}', [BookingController::class, 'g
 Route::get('trips/{trip_id}/coaches/{coach_id}/seats', [BookingController::class, 'getAvailableSeats'])->name('seats.all');
 Route::middleware(['auth'])->group(function () {
     Route::post('/seats/reserve', [BookingController::class, 'reserveSeat'])->name('seats.reserve');
-    Route::get('/pay', [App\Http\Controllers\PaymentController::class, 'redirectToGateway'])->name('pay');
-    Route::get('/payment/callback', [App\Http\Controllers\PaymentController::class, 'handleGatewayCallback'])->name('payment');
-    Route::get('/success', [App\Http\Controllers\PaymentController::class, 'success'])->name('succesful');
+    Route::get('/pay', [PaymentController::class, 'redirectToGateway'])->name('pay');
+    Route::get('/payment/callback', [PaymentController::class, 'handleGatewayCallback'])->name('payment');
+    Route::get('/success', [PaymentController::class, 'success'])->name('succesful');
     Route::get('/ticket/create', [TicketController::class, 'createTicket'])->name('ticket.create');
     Route::get('ticket/show', [TicketController::class, 'showCreatedTicket'])->name('ticket.show.created');
     Route::get('ticket/show', [TicketController::class, 'showTicket'])->name('ticket.show');
-d
+
 });
 
 // Route::middleware('throttle:2:1');
