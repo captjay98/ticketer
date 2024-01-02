@@ -11,22 +11,12 @@ use Inertia\Inertia;
 class TicketController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
+     *  Create a New Ticket
      */
     public function createTicket()
     {
         $booking = Session::get('booking');
         $tickettype = Session::get('tickettype');
-        // dd($booking, $tickettype);
-
 
         $ticket = Ticket::create(
             [
@@ -36,66 +26,47 @@ class TicketController extends Controller
             'trip_id' => $booking->trip->id,
             'booking_id' => $booking->id,
             'ticket_type_id' => $tickettype->id,
-            // 'serial_number' => uniqid($more_entropy = true),
             'expires_at' => $booking->trip->departure_time,
 ]
         );
-        Session::put(['ticket' => $ticket]);
-        return redirect(route('ticket.show'));
-        // dd($ticket);
-
+        return redirect('ticket.show.created')->with(['ticket_id' => $ticket->id]);
     }
 
     /**
-     * Store a newly created resource in storage.
+     *  Show Ticket
      */
-    public function showTicket(Request $request)
+    public function showCreatedTicket(Request $request)
     {
 
-        $ticket = Session::get('ticket');
-        // dd(auth()->id());
-        $user = $ticket->user;
-        $trip = $ticket->trip;
-        $tickettype = $ticket->ticket_type;
-        $seat = $ticket->seat;
-        $coach = $ticket->seat->coach;
-        // dd($user);
-
-        return Inertia::render('Ticket', [
-            'ticket' => $ticket, 'user' => $user,
-            'trip' => $trip, 'tickettype' => $tickettype,
-            'seat' => $seat, 'coach' => $coach]);
-
+        $ticket_id = Session::get('ticket_id');
+        $ticket = Ticket::with('user', 'trip', 'ticket_type', 'seat', 'coach')->where('id', $ticket_id)->first();
+        return Inertia::render('Ticket', ['ticket' => $ticket]);
     }
+
 
     /**
-     * Display the specified resource.
+     * Show All Tickets
      */
-    public function show(Ticket $ticket)
+    public function showTickets()
     {
-        //
+        $user = auth()->user();
+        $tickets = Ticket::where('user_id', $user->id);
+        return Inertia::render('Tickets', ['tickets' => $tickets]);
     }
+
 
     /**
-     * Show the form for editing the specified resource.
+     *  Show Ticket
      */
-    public function edit(Ticket $ticket)
+    public function showTicket($ticket_id)
     {
-        //
+        $ticket = Ticket::with('user', 'trip', 'ticket_type', 'seat', 'coach')->where('id', $ticket_id)->first();
+        return Inertia::render('Ticket', ['ticket' => $ticket]);
     }
-
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, Ticket $ticket)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Ticket $ticket)
     {
         //
     }

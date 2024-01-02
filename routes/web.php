@@ -37,14 +37,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    // Show tickets
+    // Show ticket
 });
 
 
 Route::get('/trips', [TripController::class, 'index'])->name('trips.all');
 Route::get('/trips/{trip_id}', [TripController::class, 'show'])->name('trips.one');
 Route::post('/trips', [TripController::class, 'SearchTrips'])->name('trips.search');
-Route::get('/tickettype', [TicketTypeController::class, 'allTicketTypes'])->name('ticketypes.all');
-Route::post('/tickettype', [TicketTypeController::class, 'selectTicketTypes'])->name('ticketypes.select');
 Route::get('trips/{trip_id}/coaches/{tickettype}', [BookingController::class, 'getCoaches'])->name('coaches.all');
 Route::get('trips/{trip_id}/coaches/{coach_id}/seats', [BookingController::class, 'getAvailableSeats'])->name('seats.all');
 Route::middleware(['auth'])->group(function () {
@@ -52,10 +52,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/pay', [App\Http\Controllers\PaymentController::class, 'redirectToGateway'])->name('pay');
     Route::get('/payment/callback', [App\Http\Controllers\PaymentController::class, 'handleGatewayCallback'])->name('payment');
     Route::get('/success', [App\Http\Controllers\PaymentController::class, 'success'])->name('succesful');
-    Route::post('paystack/webhook', [\App\Http\Controllers\WebhookController::class, 'handleWebhook'])->name('webhook');
     Route::get('/ticket/create', [TicketController::class, 'createTicket'])->name('ticket.create');
-    Route::get('ticket/show',[TicketController::class, 'showTicket'])->name('ticket.show');
-
+    Route::get('ticket/show', [TicketController::class, 'showCreatedTicket'])->name('ticket.show.created');
+    Route::get('ticket/show', [TicketController::class, 'showTicket'])->name('ticket.show');
+d
 });
 
 // Route::middleware('throttle:2:1');
