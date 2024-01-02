@@ -20,56 +20,14 @@ class TripController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
      * Display the specified resource.
      */
     public function show($trip_id)
     {
         $trip = Trip::with('tickettypes')->where('id', $trip_id)->first();
-        // dd($trip);
-        // $tickettypes = TicketType::where('trip_id', $trip_id)->get();
-        // dd($trip);
         return Inertia::render('Trip', ['trip' => $trip, ]);
 
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Trip $trip)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Trip $trip)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Trip $trip)
-    {
-        //
-    }
 }

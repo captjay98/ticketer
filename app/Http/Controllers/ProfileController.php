@@ -19,7 +19,6 @@ class ProfileController extends Controller
     public function edit(Request $request): Response
     {
         $user = $request->user();
-        // dd($user);
         return Inertia::render('Traveller/TProfile', [
             'user' => $user,
             'mustVerifyEmail' => $request->user() instanceof MustVerifyEmail,

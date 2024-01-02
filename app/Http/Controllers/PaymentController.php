@@ -49,7 +49,7 @@ class PaymentController extends Controller
             'currency' => 'NGN',
             'reference' => $reference,
             'metadata' => [
-              'cancel_action' => 'https://trusted-pumped-dane.ngrok-free.app/trips',
+              'cancel_action' => 'https://ticketer-captjay98.koyeb.app/trips',
               'custom_fields' => [
                   [
                       'display_name' => 'Customer Name',
@@ -76,8 +76,7 @@ class PaymentController extends Controller
         try {
             return Inertia::location($payment_url);
         } catch(\Exception $e) {
-            dd($e);
-            return Redirect::back()->withMessage(['msg' => 'The paystack token has expired. Please refresh the page and try again.', 'type' => 'error']);
+            return Redirect::back()->withMessage(['message' => 'The paystack token has expired. Please refresh the page and try again.', 'type' => 'error']);
         }
     }
 
@@ -109,32 +108,12 @@ class PaymentController extends Controller
             }
             if ($paymentDetails->status !== "success") {
                 Booking::where('reference', $paymentDetails->reference)->update('status', $paymentDetails->status);
-                return Inertia::render('Trips', );
+                return Inertia::render('Trips', ['message' => "Booking Error"]);
             }
         } catch(\Exception $e) {
             dd($e);
             Log::error('Payment Error:'. $e->getMessage());
             return redirect('trips');
         }
-                // Now you have the payment details,
-                // you can store the authorization_code in your db to allow for recurrent subscriptions
-                // you can then redirect or do whatever you want
     }
-
-
 }
-
-
-
-// $ticket = Ticket::create(
-//     [
-//     'seat_id' => $booking->seat->id,
-//     'ticket_type' => $tickettype->id,
-//     'trip_id' => $booking->trip,
-//     'booking_id' => $booking->id,
-//     'serial_number' => uniqid($more_entropy = true),
-//     'expires_at' => $booking->trip->departure_time,
-// ]
-// );
-
-// $booking->update('ticket_id', $ticket->id);
