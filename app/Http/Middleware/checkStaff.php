@@ -16,8 +16,7 @@ class checkStaff
     public function handle(Request $request, Closure $next): Response
     {
         $user = $request->user();
-        if($user->is_staff  === true && $user->account_type === 'staff') {
-
+        if($user->is_staff === "true" && $user->account_type === 'staff' || 'admin' || 'superuser') {
             return $next($request);
         } else {
             return  abort(403, 'unauthorized');
