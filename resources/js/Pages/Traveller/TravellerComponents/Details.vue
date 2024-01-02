@@ -2,7 +2,7 @@
 import Button from "@/Components/Button.vue";
 import { useForm, Link } from "@inertiajs/vue3";
 import { ref, computed } from "vue";
-
+import Avatar from "primevue/avatar";
 const { user } = defineProps({
     user: Object,
 });
@@ -39,14 +39,14 @@ const updateUser = () => {
 </script>
 <template>
     <!-- {{ console.log("CHANGED DETAILS", updatedFields) }} -->
-    <h1 class="text-lg text-center font-medium py-4">Personal Details</h1>
+    <h1 class="py-4 text-lg font-medium text-center">Personal Details</h1>
 
-    <div class="w-full flex flex-wrap justify-center rounded-md px-1 py-2 border-slate-800">
-        <form class="w-full m-auto px-1 py-2 rounded-md" @submit.prevent="updateUser">
-            <div class="w-full flex flex-col items-center justify-center mb-4">
+    <div class="flex flex-wrap justify-center py-2 px-1 w-full rounded-md border-slate-800">
+        <form class="py-2 px-1 m-auto w-full rounded-md" @submit.prevent="updateUser">
+            <div class="flex flex-col justify-center items-center mb-4 w-full">
                 <!-- <div -->
                 <!--     V-show="user.user.avatar === null" -->
-                <!--     class="rounded-full flex justify-center w-[150px]" -->
+                <!--     class="flex justify-center rounded-full w-[150px]" -->
                 <!-- > -->
                 <!--     <img -->
                 <!--         class="w-28 h-28" -->
@@ -56,18 +56,15 @@ const updateUser = () => {
                 <!-- </div> -->
 
                 <!-- :src="'/storage/avatars/userone/yGRn5HCN11ZwY2eJ0gpxL6hNGugrO5DK3aLuNYTg.jpg'" -->
-                <div class="rounded-full flex justify-center w-[150px]">
-                    <img
-                        class="w-28 h-28 rounded-full bg-green-500"
-                        alt="user Profile Picture"
-                        :src="'/storage/public/icons/avatar.png'"
-                    />
+                <div class="flex justify-center rounded-full w-[150px]">
+                    <img class="w-28 h-28 bg-green-500 rounded-full" alt="user Profile Picture"
+                        :src="'/storage/public/icons/avatar.png'" />
                 </div>
                 <!-- <input -->
                 <!--     @input="form.avatar = $event.target.files[0]" -->
                 <!--     type="file" -->
                 <!--     id="avatar" -->
-                <!--     class="file:bg-green-50 file:border-none file:outline-white w-12 ml-2 file: text-[10px] file:h-6" -->
+                <!--     class="ml-2 w-12 file:bg-green-50 file:border-none file:outline-white file: text-[10px] file:h-6" -->
                 <!-- /> -->
                 <!-- <Link -->
                 <!--     as="button" -->
@@ -80,84 +77,64 @@ const updateUser = () => {
                 <!--         avatar: form.avatar, -->
                 <!--     }" -->
                 <!-- > -->
-                <!--     <button class="bg-green-50 px-1 py-1 mt-1 text-[10px]">Upload</button> -->
+                <!--     <button class="py-1 px-1 mt-1 bg-green-50 text-[10px]">Upload</button> -->
                 <!-- </Link> -->
             </div>
-            <div class="mx-2 my-4 w-full flex flex-wrap justify-around">
-                <div class="flex flex-wrap mt-2 m-auto justify-center rounded-md">
-                    <div class="text-left py-4 px-2 max-sm:w-[160px]">
-                        <label for="first_name"
-                            ><span class="text-[12px] px-2">First Name:</span></label
-                        >
+            <div class="flex flex-wrap justify-around my-4 mx-2 w-full">
+                <div class="flex flex-wrap justify-center m-auto mt-2 rounded-md">
+                    <div class="py-4 px-2 text-left max-sm:w-[160px]">
+                        <label for="first_name"><span class="px-2 text-[12px]">First Name:</span></label>
                         <input
-                            class="flex h-8 w-full text-[13px] row bg-yellow-50/40 border-green-300 shadow-sm rounded-md font-semibold"
-                            type="text"
-                            id="first_name"
-                            v-model="form.first_name"
-                            @input="updatedFields.first_name = true"
-                        />
+                            class="flex w-full h-8 font-semibold rounded-md border-green-300 shadow-sm text-[13px] row bg-yellow-50/40"
+                            type="text" id="first_name" v-model="form.first_name"
+                            @input="updatedFields.first_name = true" />
                         <div v-show="form.errors.first_name">
-                            <p class="text-sm my-2 text-red-500 w-60">
+                            <p class="my-2 w-60 text-sm text-red-500">
                                 {{ form.errors.first_name }}
                             </p>
                         </div>
                     </div>
-                    <div class="text-left py-4 px-2 max-sm:w-[160px]">
-                        <label for="last_name"
-                            ><span class="text-[12px] px-2">Last Name:</span></label
-                        >
+                    <div class="py-4 px-2 text-left max-sm:w-[160px]">
+                        <label for="last_name"><span class="px-2 text-[12px]">Last Name:</span></label>
                         <input
-                            class="flex h-8 w-full text-[13px] row bg-yellow-50/40 border-green-200 shadow-sm rounded-md font-semibold"
-                            type="text"
-                            id="last_name"
-                            v-model="form.last_name"
-                            @input="updatedFields.last_name = true"
-                        />
+                            class="flex w-full h-8 font-semibold rounded-md border-green-200 shadow-sm text-[13px] row bg-yellow-50/40"
+                            type="text" id="last_name" v-model="form.last_name" @input="updatedFields.last_name = true" />
 
                         <div v-show="form.errors.last_name">
-                            <p class="text-sm my-2 text-red-500 w-60">
+                            <p class="my-2 w-60 text-sm text-red-500">
                                 {{ form.errors.last_name }}
                             </p>
                         </div>
                     </div>
-                    <div class="text-left py-4 px-2 max-sm:w-[160px]">
-                        <label for="phone_number"
-                            ><span class="text-[12px] px-2">Phone Number:</span></label
-                        >
+                    <div class="py-4 px-2 text-left max-sm:w-[160px]">
+                        <label for="phone_number"><span class="px-2 text-[12px]">Phone Number:</span></label>
                         <input
-                            class="flex h-8 w-full text-[13px] row bg-yellow-50/40 border-green-200 shadow-sm rounded-md font-semibold"
-                            type="text"
-                            id="phone_number"
-                            v-model="form.phone_number"
-                            @input="updatedFields.phone_number = true"
-                        />
+                            class="flex w-full h-8 font-semibold rounded-md border-green-200 shadow-sm text-[13px] row bg-yellow-50/40"
+                            type="text" id="phone_number" v-model="form.phone_number"
+                            @input="updatedFields.phone_number = true" />
                         <div v-show="form.errors.phone_number">
-                            <p class="text-sm my-2 text-red-500 w-60">
+                            <p class="my-2 w-60 text-sm text-red-500">
                                 {{ form.errors.phone_number }}
                             </p>
                         </div>
                     </div>
-                    <div class="text-left py-4 px-2 max-sm:w-[160px]">
-                        <label for="email"><span class="text-[12px] px-2">Email:</span></label>
+                    <div class="py-4 px-2 text-left max-sm:w-[160px]">
+                        <label for="email"><span class="px-2 text-[12px]">Email:</span></label>
                         <input
-                            class="flex h-8 w-full text-[13px] row bg-yellow-50/40 border-green-200 shadow-sm rounded-md font-semibold"
-                            type="text"
-                            id="email"
-                            v-model="form.email"
-                            @input="updatedFields.email = true"
-                        />
+                            class="flex w-full h-8 font-semibold rounded-md border-green-200 shadow-sm text-[13px] row bg-yellow-50/40"
+                            type="text" id="email" v-model="form.email" @input="updatedFields.email = true" />
                         <div v-show="form.errors.email">
-                            <p class="text-sm my-2 text-red-500 w-60">
+                            <p class="my-2 w-60 text-sm text-red-500">
                                 {{ form.errors.email }}
                             </p>
                         </div>
                     </div>
-                    <!-- <div class="text-left py-4 px-2 max-sm:w-[160px]"> -->
+                    <!-- <div class="py-4 px-2 text-left max-sm:w-[160px]"> -->
                     <!--     <label for="dateofbirth" -->
-                    <!--         ><span class="text-[12px] px-2">DOB:</span></label -->
+                    <!--         ><span class="px-2 text-[12px]">DOB:</span></label -->
                     <!--     > -->
                     <!--     <input -->
-                    <!--         class="flex h-8 md:w-[185px] text-[13px] row bg-yellow-50 border-green-300 shadow-sm rounded-md font-semibold" -->
+                    <!--         class="flex h-8 font-semibold bg-yellow-50 rounded-md border-green-300 shadow-sm text-[13px] row md:w-[185px]" -->
                     <!--         type="date" -->
                     <!--         id="dateofbirth" -->
                     <!--         v-model="form.dateofbirth" -->
@@ -165,25 +142,20 @@ const updateUser = () => {
                     <!--     /> -->
 
                     <!--     <div v-show="form.errors.dateofbirth"> -->
-                    <!--         <p class="text-sm my-2 text-red-500 w-60"> -->
+                    <!--         <p class="my-2 w-60 text-sm text-red-500"> -->
                     <!--             {{ form.errors.dateofbirth }} -->
                     <!--         </p> -->
                     <!--     </div> -->
                     <!-- </div> -->
                 </div>
             </div>
-            <div class="flex justify-center w-64 m-auto">
-                <Button :disabled="form.processing" type="submit"> Update </Button>
+            <div class="flex justify-center m-auto w-64">
+                <Button :disabled="form.processing" type="submit">
+                    Update
+                </Button>
             </div>
         </form>
     </div>
-    <Link
-        class="bg-green-500/70 px-4 py-1 rounded-md"
-        as="button"
-        method="Post"
-        :href="route('logout')"
-        >Logout</Link
-    >
 </template>
 
 <!-- const qualiForm = useForm({ -->
