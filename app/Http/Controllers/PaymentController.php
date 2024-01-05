@@ -54,7 +54,7 @@ class PaymentController extends Controller
                   [
                       'display_name' => 'Customer Name',
                       'variable_name' => 'customer_name',
-                      'value' => "Test User",
+                      'value' => "$user->first_name,
               ],
             ],
           ],
@@ -69,6 +69,7 @@ class PaymentController extends Controller
                 'status' => 'pending',
             ]
         );
+        Seat::where('id, 'seat_id')->update('status','reserved');
         Session::put(['booking' => $booking]);
         Session::put(['tickettype' => $tickettype]);
 
@@ -103,11 +104,11 @@ class PaymentController extends Controller
                       'amount' => $paymentDetails['data']['amount'],
                       'currency' => $paymentDetails['data']['currency'],
                   ]);
-
                 return redirect(route('ticket.create'));
             }
             if ($paymentDetails->status !== "success") {
                 Booking::where('reference', $paymentDetails->reference)->update('status', $paymentDetails->status);
+                Seat::where('id', seat_id')->update('status', 'available');
                 return Inertia::render('Trips', ['message' => "Booking Error"]);
             }
         } catch(\Exception $e) {
