@@ -49,14 +49,15 @@ class PaymentController extends Controller
             'currency' => 'NGN',
             'reference' => $reference,
             'metadata' => [
-              'cancel_action' => 'https://ticketer-captjay98.koyeb.app/trips',
-              'custom_fields' => [
-                  [
-                      'display_name' => 'Customer Name',
-                      'variable_name' => 'customer_name',
-                      'value' => "$user->first_name,
+                'cancel_action' => 'https://ticketer-captjay98.koyeb.app/trips',
+                'custom_fields' => [
+                    [
+                        'display_name' => 'Customer Name',
+                        'variable_name' => 'customer_name',
+                        'value' => $user->first_name,
+
+                ],
               ],
-            ],
           ],
         ];
 
@@ -69,7 +70,8 @@ class PaymentController extends Controller
                 'status' => 'pending',
             ]
         );
-        Seat::where('id, 'seat_id')->update('status','reserved');
+         Seat::where('id', 'seat_id')->update('status','reserved');
+
         Session::put(['booking' => $booking]);
         Session::put(['tickettype' => $tickettype]);
 
@@ -108,7 +110,7 @@ class PaymentController extends Controller
             }
             if ($paymentDetails->status !== "success") {
                 Booking::where('reference', $paymentDetails->reference)->update('status', $paymentDetails->status);
-                Seat::where('id', seat_id')->update('status', 'available');
+                Seat::where('id', seat_id)->update('status', 'available');
                 return Inertia::render('Trips', ['message' => "Booking Error"]);
             }
         } catch(\Exception $e) {
