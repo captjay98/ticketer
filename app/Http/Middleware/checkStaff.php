@@ -9,17 +9,17 @@ use Symfony\Component\HttpFoundation\Response;
 class checkStaff
 {
     /**
-     * Handle an incoming request.
-     *
-     * @param \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response) $next
-     */
-    public function handle(Request $request, Closure $next): Response
-    {
-        $user = $request->user();
-        if ($user->is_staff && $user->accountype == "staff" || "admin" || "superuser") {
-            return $next($request);
-        } else {
-            return  abort(403, 'unauthorized');
-        }
+ * Handle an incoming request.
+ *
+ * @param \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response) $next
+ */
+public function handle(Request $request, Closure $next): Response
+{
+    $user = $request->user();
+    if ($user->is_staff && in_array($user->accountype, ["staff", "admin", "superuser"])) {
+        return $next($request);
+    } else {
+        return abort(403, 'unauthorized');
     }
+}
 }
