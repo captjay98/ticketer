@@ -25,11 +25,10 @@ class PaymentController extends Controller
         $trip_id =  Session::get('trip_id');
         $seat_id =  Session::get('seat_id');
         $seat_class =  Session::get('coach_class');
+
         $tickettype = $this->getTicketType($trip_id, $seat_class);
         $paymentDetails = $this->createPaymentDetails($user, $tickettype);
-
         $booking = $this->createBooking($user, $trip_id, $seat_id, $paymentDetails['reference']);
-        // $this->reserveSeat($booking->seat_id);
 
         Session::put(['booking' => $booking]);
         Session::put(['tickettype' => $tickettype]);
@@ -62,7 +61,6 @@ class PaymentController extends Controller
         $reference = Paystack::genTranxRef();
         $amount = $tickettype->price;
 
-
         return [
             'first_name' => $user->first_name,
             'last_name' => $user->last_name,
@@ -76,7 +74,7 @@ class PaymentController extends Controller
                     [
                         'display_name' => 'Customer Name',
                         'variable_name' => 'customer_name',
-                        'value' => $user->first_name,
+                        'value' => "$user->first_name $user->first_name",
 
                     ],
                 ],
@@ -86,8 +84,6 @@ class PaymentController extends Controller
 
     private function getTicketType($trip_id = null, $seat_class = null)
     {
-        $trip_id = $trip_id ;
-        $seat_class = $seat_class ;
         return TicketType::where('trip_id', $trip_id)
             ->where('seat_class', $seat_class)->firstOrFail();
     }
@@ -111,7 +107,7 @@ class PaymentController extends Controller
         try {
             return Inertia::location($payment_url);
         } catch (\Exception $e) {
-            return Redirect::back()->with('error', 'The paystack token has expired. Please refresh the page and try again.');
+            return Redirect::back()->with('message', 'An error occured. Please refresh the page and try again. If error persists, Kindly contact admin at ticketeradmin@mail.com . Thank You.');
         }
     }
 
@@ -133,8 +129,6 @@ class PaymentController extends Controller
 
         Seat::where('id', $booking->seat_id)->update(['status' => 'booked']);
 
-        // Session::forget(['booking', 'tickettype', 'trip_id', 'seat_id', 'coach_id', 'coach_class']);
-
         return redirect(route('ticket.create'));
     }
 
@@ -146,7 +140,7 @@ class PaymentController extends Controller
 
         Seat::where('id', $booking->seat_id)->update(['status' => 'available']);
 
-        return redirect()->back()->with('error', 'Payment failed. Please try again.');
+        return redirect(route('trips'))->with('message', 'Payment failed. Please try again.');
     }
 
     private function recordTransaction($paymentDetails, $booking, $status)

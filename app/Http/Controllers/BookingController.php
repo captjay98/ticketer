@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+
 use App\Models\CoachTrip;
 use App\Models\Trip;
 use App\Models\Coach;
@@ -14,30 +17,48 @@ class BookingController extends Controller
 {
     /**
      * Show All Coaches
+     *
+     * @param int $trip_id
+     * @param string $tickettype
+     * @return \Inertia\Response
      */
     public function getCoaches($trip_id, $tickettype)
     {
-        $trip = Trip::find($trip_id);
-        $coaches = $trip->coaches->where('coach_class', $tickettype);
-        return Inertia::render('Coaches', ['coaches' => $coaches, 'trip' => $trip]);
+        // Retrieve the trip with coaches of a specific ticket type
+        $trip = Trip::with(['coaches' => function ($query) use ($tickettype) {
+            $query->where('coach_class', $tickettype);
+        }])->find($trip_id);
+
+        if ($trip) {
+            $coaches = $trip->coaches;
+            return Inertia::render('Coaches', ['coaches' => $coaches, 'trip' => $trip]);
+        }
     }
 
-
     /**
-     *  Show All Available Seats
+     * Show All Available Seats
+     *
+     * @param int $trip_id
+     * @param int $coach_id
+     * @return \Inertia\Response
      */
     public function getAvailableSeats($trip_id, $coach_id)
     {
+        // Retrieve all available seats for a specific trip and coach
         $seats = Seat::with('coach')
-        ->where('trip_id', $trip_id)
-        ->where('coach_id', $coach_id)
-        ->orderBy('id', 'asc')
+            ->where('trip_id', $trip_id)
+            ->where('coach_id', $coach_id)
+            ->orderBy('id', 'asc')
             ->get();
+
         return Inertia::render('Seats', ['seats' => $seats]);
     }
 
     /**
      * Reserve a Seat
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function reserveSeat(Request $request)
     {
@@ -46,23 +67,22 @@ class BookingController extends Controller
         $coach_id = $request->input('coach_id');
         $coach_class = $request->input('coach_class');
 
-
         try {
-            // DB::beginTransaction();
+            DB::beginTransaction();
+
+            // Update the seat status to "reserved"
             Seat::where('id', $seat_id)
-            ->where('trip_id', $trip_id)
-            ->where('coach_id', $coach_id)
-            ->update(['status' => 'reserved']);
+                ->update(['status' => 'reserved']);
 
-            // DB::commit();
+            DB::commit();
+
         } catch (\Exception $e) {
-            dd($e);
-            // DB::rollBack();
+            Log::error('Payment Error: ' . $e->getMessage());
+            DB::rollBack();
 
+            return redirect()->back()->with('message', 'Error reserving seat, try another seat.');
         }
 
-          return redirect('pay')->with(['seat_id' => $seat_id, 'trip_id' => $trip_id, 'coach_id' => $coach_id, 'coach_class' => $coach_class]);
+        return redirect('pay')->with(['seat_id' => $seat_id, 'trip_id' => $trip_id, 'coach_id' => $coach_id, 'coach_class' => $coach_class]);
     }
-
-
 }
