@@ -38,7 +38,7 @@ const updatePassword = () => {
         class="flex flex-wrap justify-center py-2 px-2 my-4 w-full rounded-md bg-green-50/30 border-slate-800"
     >
         <div class="mt-2 m-auto w-[99%] px-4 py-2 rounded-md">
-            <h1 class="py-2 text-xl font-semibold text-left">
+            <h1 class="py-2 text-xl font-semibold text-center">
                 Password Update
             </h1>
         </div>

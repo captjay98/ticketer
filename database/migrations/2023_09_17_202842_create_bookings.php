@@ -17,7 +17,7 @@ return new class () extends Migration {
             $table->integer("seat_id");
             $table->integer("trip_id");
             $table->string("reference");
-            $table->string('status')->enum('pending, failed, succesful');
+            $table->string('status')->enum('pending', 'failed', 'succesful');
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('ticket_id')->references('id')->on('tickets');
             $table->foreign('seat_id')->references('id')->on('seats');

@@ -1,14 +1,10 @@
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-const { ticket, user, trip, tickettype, seat, coach } = defineProps({
+const { ticket } = defineProps({
     ticket: Object,
-    user: Object,
-    trip: Object,
-    tickettype: Object,
-    seat: Object,
-    coach: Object,
+
 });
-console.log(ticket, user, trip, tickettype, coach);
+console.log(ticket);
 </script>
 
 <template>
@@ -26,36 +22,36 @@ console.log(ticket, user, trip, tickettype, coach);
                             <div class="flex justify-between my-1 text-sm">
                                 <div class="w-1/3">Name:</div>
                                 <div class="w-2/3 font-semibold">
-                                    {{ user.first_name }}
-                                    {{ user.last_name }}
+                                    {{ ticket.user.first_name }}
+                                    {{  ticket.user.last_name }}
                                 </div>
                             </div>
 
                             <div class="flex justify-between my-1 text-sm">
                                 <div class="w-1/3">From:</div>
                                 <div class="w-2/3 font-semibold">
-                                    {{ trip.source }}
+                                    {{  ticket.trip.source }}
                                 </div>
                             </div>
 
                             <div class="flex justify-between my-1 text-sm">
                                 <div class="w-1/3">To:</div>
                                 <div class="w-2/3 font-semibold">
-                                    {{ trip.destination }}
+                                    {{  ticket.trip.destination }}
                                 </div>
                             </div>
 
                             <div class="flex justify-between my-1 text-sm">
                                 <div class="w-1/3">Class:</div>
                                 <div class="w-2/3 font-semibold">
-                                    {{ tickettype.seat_class }}
+                                    {{  ticket.tickettype.seat_class }}
                                 </div>
                             </div>
 
                             <div class="flex justify-between my-1 text-sm">
                                 <div class="w-1/3">Date:</div>
                                 <div class="w-2/3 font-semibold">
-                                    {{ trip.date }}
+                                    {{  ticket.trip.date }}
                                 </div>
                             </div>
                         </div>
@@ -64,19 +60,19 @@ console.log(ticket, user, trip, tickettype, coach);
                                 <div class="mr-8 w-8 text-sm text-center">
                                     Coach:
                                     <span class="font-bold">{{
-                                        coach.coach_name
+                                         ticket.seat.coach.coach_name
                                     }}</span>
                                 </div>
                                 <div class="mr-4 w-8 text-sm text-center">
                                     Seat:
                                     <span class="font-bold">{{
-                                        seat.seat_number
+                                         ticket.seat.seat_number
                                     }}</span>
                                 </div>
                                 <div class="mr-4 w-16 text-sm text-center">
                                     Departure:
                                     <span class="font-bold">{{
-                                        trip.departure_time
+                                         ticket.trip.departure_time
                                     }}</span>
                                 </div>
                             </div>

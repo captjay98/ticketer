@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use Inertia\Response;
+use App\Models\Booking;
 
 class ProfileController extends Controller
 {
@@ -19,11 +20,15 @@ class ProfileController extends Controller
     public function edit(Request $request): Response
     {
         $user = $request->user();
-        return Inertia::render('Traveller/TProfile', [
-            'user' => $user,
-            'mustVerifyEmail' => $request->user() instanceof MustVerifyEmail,
-            'status' => session('status'),
-        ]);
+        return Inertia::render(
+            'Traveller/TProfile',
+            [
+                'user' => $user,
+                'trips' => Booking::with('user','seat','seat.coach','trip','ticket',)->where('user_id', $user->id)->get(),
+                'mustVerifyEmail' => $request->user() instanceof MustVerifyEmail,
+                'status' => session('status'),
+            ]
+        );
     }
 
     /**
@@ -47,9 +52,11 @@ class ProfileController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
-        $request->validate([
-            'password' => ['required', 'current_password'],
-        ]);
+        $request->validate(
+            [
+                'password' => ['required', 'current_password'],
+            ]
+        );
 
         $user = $request->user();
 

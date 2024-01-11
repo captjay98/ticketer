@@ -7,7 +7,6 @@ const { user } = defineProps({
     user: Object,
 });
 
-console.log(user);
 const form = useForm({
     // avatar: ref(user.user.avatar),
     first_name: ref(user.first_name),
@@ -33,16 +32,16 @@ const updateUser = () => {
             preserveScroll: true,
         });
     }
-    // console.log("DETAILS", updatedFields);
+
 };
-// console.log(user);
+
 </script>
 <template>
-    <!-- {{ console.log("CHANGED DETAILS", updatedFields) }} -->
+
     <h1 class="py-4 text-lg font-medium text-center">Personal Details</h1>
 
     <div
-        class="flex flex-wrap justify-center py-2 px-1 w-full rounded-md border-slate-800"
+        class=" flex flex-wrap justify-center py-2 px-1 w-full rounded-md border-slate-800"
     >
         <form
             class="py-2 px-1 m-auto w-full rounded-md"
@@ -88,9 +87,9 @@ const updateUser = () => {
                 <!--     <button class="py-1 px-1 mt-1 bg-green-50 text-[10px]">Upload</button> -->
                 <!-- </Link> -->
             </div>
-            <div class="flex flex-wrap justify-around my-4 mx-2 w-full">
+            <div class="flex flex-wrap justify-around my-4  w-full">
                 <div
-                    class="flex flex-wrap justify-center m-auto mt-2 rounded-md"
+                    class=" grid grid-cols-2 flex flex-wrap justify-center m-auto mt-2 rounded-md"
                 >
                     <div class="py-4 px-2 text-left max-sm:w-[160px]">
                         <label for="first_name"

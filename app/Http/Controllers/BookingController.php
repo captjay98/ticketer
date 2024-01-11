@@ -67,10 +67,10 @@ class BookingController extends Controller
         $coach_id = $request->input('coach_id');
         $coach_class = $request->input('coach_class');
 
+
         try {
             DB::beginTransaction();
 
-            // Update the seat status to "reserved"
             Seat::where('id', $seat_id)
                 ->update(['status' => 'reserved']);
 
@@ -79,7 +79,6 @@ class BookingController extends Controller
         } catch (\Exception $e) {
             Log::error('Payment Error: ' . $e->getMessage());
             DB::rollBack();
-
             return redirect()->back()->with('message', 'Error reserving seat, try another seat.');
         }
 

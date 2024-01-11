@@ -28,7 +28,7 @@ Route::get('/', function () {
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
     ]);
-});
+})->name('home');
 
 Route::get('/dashboard', function () {
     return Inertia::render('profile.edit');
@@ -54,8 +54,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/payment/callback', [PaymentController::class, 'handleGatewayCallback'])->name('payment');
     Route::get('/success', [PaymentController::class, 'success'])->name('succesful');
     Route::get('/ticket/create', [TicketController::class, 'createTicket'])->name('ticket.create');
-    Route::get('ticket/show', [TicketController::class, 'showCreatedTicket'])->name('ticket.show.created');
-    Route::get('ticket/show', [TicketController::class, 'showTicket'])->name('ticket.show');
+    Route::get('ticket', [TicketController::class, 'showCreatedTicket'])->name('ticket.show.created');
+    Route::get('ticket/{ticket_id}', [TicketController::class, 'showTicket'])->name('ticket.show');
 
 });
 

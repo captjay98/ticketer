@@ -28,7 +28,7 @@ class PaymentController extends Controller
 
         $tickettype = $this->getTicketType($trip_id, $seat_class);
         $paymentDetails = $this->createPaymentDetails($user, $tickettype);
-        $booking = $this->createBooking($user, $trip_id, $seat_id, $paymentDetails['reference']);
+        $booking = $this->createBooking($user, $seat_id, $trip_id, $paymentDetails['reference']);
 
         Session::put(['booking' => $booking]);
         Session::put(['tickettype' => $tickettype]);
@@ -126,24 +126,25 @@ class PaymentController extends Controller
 
     private function onPaymentSuccess($paymentDetails, $booking)
     {
-        $transaction = $this->recordTransaction($paymentDetails, $booking, 'success');
+       $this->recordTransaction($paymentDetails, $booking, 'success');
 
-        $booking->update(['status' => 'confirmed']);
+        $booking->update(['status' => 'succesful']);
 
         Seat::where('id', $booking->seat_id)->update(['status' => 'booked']);
+
 
         return redirect(route('ticket.create'));
     }
 
     private function onPaymentFailure($paymentDetails, $booking)
     {
-        $transaction = $this->recordTransaction($paymentDetails, $booking, 'failed');
+       $this->recordTransaction($paymentDetails, $booking, 'failed');
 
         $booking->update(['status' => 'failed']);
 
         Seat::where('id', $booking->seat_id)->update(['status' => 'available']);
 
-        return redirect(route('trips'))->with('message', 'Payment failed. Please try again.');
+        return redirect(route('home'))->with('message', 'Payment failed. Please try again.');
     }
 
     private function recordTransaction($paymentDetails, $booking, $status)
@@ -151,10 +152,12 @@ class PaymentController extends Controller
         return Transaction::create(
             [
                 'booking_id' => $booking->id,
-                'user_id' => $booking->user_id,
-                'amount' => $paymentDetails['data']['amount'],
-                'transaction_reference' => $paymentDetails['data']['reference'],
+                'transaction_ref' => $paymentDetails['data']['reference'],
+                'authorization_code' => $paymentDetails['data']['authorization']['authorization_code'],
                 'status' => $status,
+                'amount' => $paymentDetails['data']['amount'],
+                'currency'=> $paymentDetails['data']['currency'],
+                'metadata'=> json_encode($paymentDetails['data']['metadata']),
             ]
         );
     }

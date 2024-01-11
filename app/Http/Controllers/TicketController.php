@@ -29,8 +29,9 @@ class TicketController extends Controller
             'expires_at' => $booking->trip->departure_time,
 ]
         );
+        $booking->update(['ticket_id' => $ticket->id]);
         Session::forget(['booking', 'tickettype', 'trip_id', 'seat_id', 'coach_id', 'coach_class']);
-        return redirect('ticket.show.created')->with(['ticket_id' => $ticket->id]);
+        return redirect(route('ticket.show.created'))->with(['ticket_id' => $ticket->id]);
     }
 
     /**
@@ -40,7 +41,7 @@ class TicketController extends Controller
     {
 
         $ticket_id = Session::get('ticket_id');
-        $ticket = Ticket::with('user', 'trip', 'ticket_type', 'seat', 'coach')->where('id', $ticket_id)->first();
+        $ticket = Ticket::with('user', 'seat', 'ticket_type', 'trip', 'seat.coach')->where('id', $ticket_id)->first();
         return Inertia::render('Ticket', ['ticket' => $ticket]);
     }
 
@@ -61,7 +62,7 @@ class TicketController extends Controller
      */
     public function showTicket($ticket_id)
     {
-        $ticket = Ticket::with('user', 'trip', 'ticket_type', 'seat', 'coach')->where('id', $ticket_id)->first();
+        $ticket = Ticket::with('user', 'seat', 'ticket_type', 'trip', 'seat.coach')->where('id', $ticket_id)->first();
         return Inertia::render('Ticket', ['ticket' => $ticket]);
     }
     /**
