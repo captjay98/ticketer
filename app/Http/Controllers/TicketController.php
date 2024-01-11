@@ -29,6 +29,7 @@ class TicketController extends Controller
             'expires_at' => $booking->trip->departure_time,
 ]
         );
+        Session::forget(['booking', 'tickettype', 'trip_id', 'seat_id', 'coach_id', 'coach_class']);
         return redirect('ticket.show.created')->with(['ticket_id' => $ticket->id]);
     }
 
