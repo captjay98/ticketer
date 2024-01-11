@@ -195,36 +195,36 @@ const reviews = [
                         <form
                             class="flex absolute flex-wrap justify-center py-1 px-1 mt-4 rounded-md md:justify-start -bottom-[25px] max-sm:-bottom-[70px]">
                             <!-- class="py-1 px-2 w-full rounded-md border-green-200 focus:border-none focus:ring-0 bg-yellow-50/50 h-[1.7rem] focus:outline-green-500" -->
+
                             <label for="source"></label>
                             <select
-                                class="w-28 h-14 text-sm text-center bg-yellow-50 rounded-l-2xl border-none appearance-none focus:ring-0 focus:outline-none text-slate-900 xl:w-[180px]"
+                                class="w-28 h-14 text-center bg-yellow-50 rounded-l-2xl border-none appearance-none focus:ring-0 focus:outline-none text-[1rem] text-slate-900 xl:w-[180px]"
                                 name="source" id="source" v-model="form.source" placeholder="Source">
                                 <option value="" disabled selected>
                                     Source
                                 </option>
-                                <option class="bg-green-50" v-for="source in sources" :key="source" :value="source">
+                                <option class="" v-for="source in sources" :key="source" :value="source">
                                     {{ source }}
                                 </option>
                             </select>
 
                             <label for="destination"></label>
                             <select
-                                class="w-28 h-14 text-sm text-center bg-yellow-50 border-none focus:ring-0 focus:outline-none text-slate-900 xl:w-[180px]"
+                                class="w-28 h-14 text-center bg-yellow-50 border-none focus:ring-0 focus:outline-none text-[1rem] text-slate-900 xl:w-[180px]"
                                 name="destination" id="destination" v-model="form.destination">
                                 <option value="" disabled selected>
                                     Destination
                                 </option>
-                                <option
-                                    class="py-10 h-14 bg-green-50 rounded-md hover:bg-green-400 active:bg-green-400 text-md"
+                                <option class="rounded-md hover:bg-green-400 active:bg-green-400 text-md"
                                     v-for="destination in destinations" :key="destination" :value="destination">
                                     {{ destination }}
                                 </option>
                             </select>
                             <input
-                                class="w-28 h-14 text-sm text-center bg-yellow-50 border-none focus:outline-none max-sm:rounded-r-2xl text-slate-900 xl:w-[180px] focus:ring-none"
+                                class="w-28 h-14 text-center bg-yellow-50 border-none focus:outline-none text-[1rem] max-sm:rounded-r-2xl text-slate-900 xl:w-[180px] focus:ring-none"
                                 type="date" value="" id="" placeholder="Date" />
                             <Link
-                                class="py-1 px-3 w-28 bg-green-500 rounded-r-2xl hover:bg-green-700 active:bg-green-900 max-sm:rounded-xl text-slate-800"
+                                class="py-1 px-3 w-28 bg-green-500 rounded-r-2xl duration-300 hover:text-white hover:bg-green-700 active:bg-green-900 animate-all max-sm:rounded-xl text-slate-800"
                                 as="button" :href="route('trips.search')" :data="{
                                     source: form.source,
                                     destination: form.destination,

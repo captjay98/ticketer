@@ -51,28 +51,21 @@ const createTrip = () => {
 <template>
     <AdminLayout>
         <div
-            class="min-h-screen flex flex-wrap justify-center items-center w-full rounded-md px-4 py-4 m-auto bg-yellow-50/10"
-        >
+            class="flex flex-wrap justify-center items-center py-4 px-4 m-auto w-full min-h-screen rounded-md bg-yellow-50/10">
             <div class="p-8 shadow-2xl bg-green-50/30 lg:w-[50rem]">
                 <form @submit.prevent="createTrip">
-                    <h3 class="text-xl font-semibold text-center mb-8">Create Trip</h3>
-                    <div
-                        class="text-slate-900 flex flex-wrap m-auto gap-5 lg:gap-10 lg:justify-between justify-center"
-                    >
+                    <h3 class="mb-8 text-xl font-semibold text-center">
+                        Create Trip
+                    </h3>
+                    <div class="flex flex-wrap gap-5 justify-center m-auto lg:gap-10 lg:justify-between text-slate-900">
                         <div class="w-[12rem]">
                             <label for="title">Title:</label>
                             <select
-                                class="bg-yellow-50/50 rounded-md w-full px-2 py-1 h-[1.7rem] border-green-200 focus:outline-green-500 focus:border-none focus:ring-0"
-                                name="title"
-                                id="title"
-                                v-model="form.title"
-                            >
-                                <option
-                                    class="bg-green-50 rounded-md py-2"
-                                    v-for="title in titles"
-                                    :key="title"
-                                    :value="title"
-                                >
+                                class="py-1 px-2 w-full rounded-md border-green-200 focus:border-none focus:ring-0 bg-yellow-50/50 h-[1.7rem] focus:outline-green-500"
+                                name="title" id="title" v-model="form.title">
+                                <option value="title" disbaled>Title</option>
+                                <option class="py-2 bg-green-50 rounded-md" v-for="title in titles" :key="title"
+                                    :value="title">
                                     {{ title }}
                                 </option>
                             </select>
@@ -81,17 +74,10 @@ const createTrip = () => {
                         <div class="w-[12rem]">
                             <label for="source">Source:</label>
                             <select
-                                class="bg-yellow-50/50 rounded-md w-full px-2 py-1 h-[1.7rem] border-green-200 focus:outline-green-500 focus:border-none focus:ring-0"
-                                name="source"
-                                id="source"
-                                v-model="form.source"
-                            >
-                                <option
-                                    class="bg-green-50 rounded-md py-2"
-                                    v-for="source in sources"
-                                    :key="source"
-                                    :value="source"
-                                >
+                                class="py-1 px-2 w-full rounded-md border-green-200 focus:border-none focus:ring-0 bg-yellow-50/50 h-[1.7rem] focus:outline-green-500"
+                                name="source" id="source" v-model="form.source">
+                                <option class="py-2 bg-green-50 rounded-md" v-for="source in sources" :key="source"
+                                    :value="source">
                                     {{ source }}
                                 </option>
                             </select>
@@ -99,74 +85,43 @@ const createTrip = () => {
                         <div class="w-[12rem]">
                             <label for="destination">Destination:</label>
                             <select
-                                class="bg-yellow-50/50 rounded-md w-full px-2 py-1 h-[1.7rem] border-green-200 focus:outline-green-500 focus:border-none focus:ring-0"
-                                name="destination"
-                                id="destination"
-                                v-model="form.destination"
-                            >
-                                <option
-                                    class="bg-green-50 rounded-md py-2"
-                                    v-for="destination in destinations"
-                                    :key="destination"
-                                    :value="destination"
-                                >
+                                class="py-1 px-2 w-full rounded-md border-green-200 focus:border-none focus:ring-0 bg-yellow-50/50 h-[1.7rem] focus:outline-green-500"
+                                name="destination" id="destination" v-model="form.destination">
+                                <option class="py-2 bg-green-50 rounded-md" v-for="destination in destinations"
+                                    :key="destination" :value="destination">
                                     {{ destination }}
                                 </option>
                             </select>
                         </div>
                         <div class="w-[12rem]">
-                            <label class="text-sm py-1 font-medium" for="title">Seats:</label>
-                            <input
-                                type="number"
-                                class="w-full h-[1.8rem] bg-yellow-50/50 border-green-200 rounded-md focus:border-none focus:outline-green-500 focus:ring-0"
-                                v-model="form.seats"
-                                required
-                            />
+                            <label class="py-1 text-sm font-medium" for="title">Seats:</label>
+                            <input type="number"
+                                class="w-full rounded-md border-green-200 focus:border-none focus:ring-0 h-[1.8rem] bg-yellow-50/50 focus:outline-green-500"
+                                v-model="form.seats" required />
                         </div>
                         <div class="w-[12rem]">
-                            <label class="text-sm py-1 font-medium" for="title"
-                                >Departure Time:</label
-                            >
-                            <input
-                                type="time"
-                                class="w-full h-[1.8rem] bg-yellow-50/50 border-green-200 rounded-md focus:border-none focus:outline-green-500 focus:ring-0"
-                                v-model="form.departure_time"
-                                required
-                            />
+                            <label class="py-1 text-sm font-medium" for="title">Departure Time:</label>
+                            <input type="time"
+                                class="w-full rounded-md border-green-200 focus:border-none focus:ring-0 h-[1.8rem] bg-yellow-50/50 focus:outline-green-500"
+                                v-model="form.departure_time" required />
                         </div>
 
                         <div class="w-[12rem]">
-                            <label class="text-sm py-1 font-medium" for="title"
-                                >Arrival Time:</label
-                            >
-                            <input
-                                type="time"
-                                class="w-full h-[1.8rem] bg-yellow-50/50 border-green-200 rounded-md focus:border-none focus:outline-green-500 focus:ring-0"
-                                v-model="form.arrival_time"
-                                required
-                            />
+                            <label class="py-1 text-sm font-medium" for="title">Arrival Time:</label>
+                            <input type="time"
+                                class="w-full rounded-md border-green-200 focus:border-none focus:ring-0 h-[1.8rem] bg-yellow-50/50 focus:outline-green-500"
+                                v-model="form.arrival_time" required />
                         </div>
                         <div class="w-[12rem]">
-                            <label class="text-sm py-1 font-medium" for="title">Date:</label>
-                            <input
-                                type="date"
-                                class="w-full h-[1.8rem] bg-yellow-50/50 border-green-200 rounded-md focus:border-none focus:outline-green-500 focus:ring-0"
-                                v-model="form.date"
-                                required
-                            />
+                            <label class="py-1 text-sm font-medium" for="title">Date:</label>
+                            <input type="date"
+                                class="w-full rounded-md border-green-200 focus:border-none focus:ring-0 h-[1.8rem] bg-yellow-50/50 focus:outline-green-500"
+                                v-model="form.date" required />
                         </div>
                         <div class="max-md:w-[12rem] lg:max-w-[64%]">
-                            <label class="text-sm py-1 px-2 font-medium" for="title"
-                                >Select Coaches:</label
-                            >
-                            <SelectButton
-                                class="flex w-full gap-2 flex-wrap bg-yellow-50/50"
-                                v-model="form.coaches"
-                                :options="coaches"
-                                optionLabel="coach_name"
-                                multiple
-                                aria-labelledby="multiple"
-                            />
+                            <label class="py-1 px-2 text-sm font-medium" for="title">Select Coaches:</label>
+                            <SelectButton class="flex flex-wrap gap-2 w-full bg-yellow-50/50" v-model="form.coaches"
+                                :options="coaches" optionLabel="coach_name" multiple aria-labelledby="multiple" />
                             <!-- <Multiselect v-model="form.coaches" :options="coaches"></Multiselect> -->
                         </div>
 
@@ -174,13 +129,13 @@ const createTrip = () => {
                         <!--                            <label for="coaches">Select Coaches:</label> -->
                         <!--                            <select -->
                         <!--                                multiple -->
-                        <!--                                class="bg-yellow-50/50 rounded-md w-full px-2 py-1 h-[1.7rem] border-green-200 focus:outline-green-500 focus:border-none focus:ring-0" -->
+                        <!--                                class="py-1 px-2 w-full rounded-md border-green-200 focus:border-none focus:ring-0 bg-yellow-50/50 h-[1.7rem] focus:outline-green-500" -->
                         <!--                                name="coaches[]" -->
                         <!--                                id="coaches" -->
                         <!--                                v-model="form.coaches" -->
                         <!--                            > -->
                         <!--                                <option -->
-                        <!--                                    class="bg-green-50 rounded-md py-2" -->
+                        <!--                                    class="py-2 bg-green-50 rounded-md" -->
                         <!--                                    v-for="coach in coaches" -->
                         <!--                                    :key="coach.id" -->
                         <!--                                    :value="coach.id" -->
@@ -191,17 +146,17 @@ const createTrip = () => {
                         <!--                        </div> -->
 
                         <!-- <div class="w-[12rem]"> -->
-                        <!--     <label class="text-sm py-1 font-medium" for="title">Ticket Type:</label> -->
+                        <!--     <label class="py-1 text-sm font-medium" for="title">Ticket Type:</label> -->
                         <!--     <input -->
                         <!--         type="checkbox" -->
-                        <!--         class="w-full h-[1.8rem] bg-yellow-50/50 border-green-200 rounded-md focus:border-none focus:outline-green-500 focus:ring-0" -->
+                        <!--         class="w-full rounded-md border-green-200 focus:border-none focus:ring-0 h-[1.8rem] bg-yellow-50/50 focus:outline-green-500" -->
                         <!--         v-model="form.tickettype" -->
                         <!--         required -->
                         <!--     /> -->
                         <!-- </div> -->
                     </div>
 
-                    <div class="w-[20rem] m-auto mt-8">
+                    <div class="m-auto mt-8 w-[20rem]">
                         <Button>Create Trip</Button>
                     </div>
                 </form>
