@@ -1,6 +1,6 @@
 <script setup>
 import { Link } from "@inertiajs/vue3";
-import GuestLayout from "@/Layouts/GuestLayout.vue";
+import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 const { coaches, trip } = defineProps({
     coaches: Object,
     trip: Object,
@@ -8,35 +8,49 @@ const { coaches, trip } = defineProps({
 console.log(coaches);
 </script>
 <template>
-    <GuestLayout>
+    <AuthenticatedLayout>
         <div></div>
         <div
-            class="bg-yellow-50/50 w-screen h-screen flex flex-col justify-center items-center py-4"
+            class="md:w-[80%] lg:w-[60%] xl:w-[50%] m-auto flex flex-col justify-center w-screen h-screen max-sm:mt-20"
         >
-            <h3 class="text-2xl font-medium">Select Coach</h3>
+            <h1 class="mt-24 mb-6 text-2xl text-center">Select a Coach</h1>
             <div
-                class="bg-green-50/50 rounded-md grid grid-cols-3 max-sm:grid-cols-2 m-auto gap-2 px-2 py-8"
+                class="flex overflow-auto flex-wrap gap-6 justify-center items-center py-"
             >
                 <div
-                    class="w-[11rem] h-[9rem] rounded-md shadow-md flex flex-col justify-center items-center bg-green-50/50 hover:bg-green-500/40 hover:shadow-2xl hover:shadow-green-500/50 hover:font-medium shadow-green-300/50 transition-all ease-in duration-200"
+                    class="flex flex-col justify-center items-center rounded-md shadow-md transition-all duration-200 ease-in hover:font-medium hover:shadow-2xl w-[11rem] h-[9rem] bg-green-50/50 shadow-green-300/50 hover:bg-green-500/40 hover:shadow-green-500/50"
                     v-for="coach in coaches"
+                    :key="coach.id"
                 >
-                    <Link :href="route('seats.all', { trip_id: trip.id, coach_id: coach.id })">
+                    <Link
+                        :href="
+                            route('seats.all', {
+                                trip_id: trip.id,
+                                coach_id: coach.id,
+                            })
+                        "
+                    >
                         <div class="flex justify-start items-center">
                             <span class="text-sm">Coach Name: </span>
-                            <h3 class="font-medium">&nbsp{{ coach.coach_name }}</h3>
+                            <h3 class="font-medium">
+                                &nbsp{{ coach.coach_name }}
+                            </h3>
                         </div>
                         <div class="flex justify-start items-center">
                             <span class="text-sm"> Coach Class: </span>
-                            <h3 class="font-medium">&nbsp&nbsp{{ coach.coach_class }}</h3>
+                            <h3 class="font-medium">
+                                &nbsp&nbsp{{ coach.coach_class }}
+                            </h3>
                         </div>
                         <div class="flex justify-start items-center">
                             <span class="text-sm"> Total Seats: </span>
-                            <h3 class="font-medium">&nbsp&nbsp&nbsp&nbsp{{ coach.capacity }}</h3>
+                            <h3 class="font-medium">
+                                &nbsp&nbsp&nbsp&nbsp{{ coach.capacity }}
+                            </h3>
                         </div>
                     </Link>
                 </div>
             </div>
         </div>
-    </GuestLayout>
+    </AuthenticatedLayout>
 </template>

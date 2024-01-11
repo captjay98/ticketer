@@ -1,7 +1,6 @@
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import GuestLayout from "@/Layouts/GuestLayout.vue";
-import { Link  } from "@inertiajs/vue3";
+import { Link } from "@inertiajs/vue3";
 
 const { trips } = defineProps({
     trips: Object,
@@ -60,46 +59,55 @@ const imagePaths = {
 </script>
 <template>
     <AuthenticatedLayout>
-        <GuestLayout>
-            <div class="min-h-screen w-screen overflow-y-scroll">
-                <h1 class="text-2xl text-center font-semibold mt-20">Trips</h1>
-                <div class="flex flex-wrap overflow-auto py-8 gap-6 justify-center">
-                    <div
-                        v-for="trip in trips"
-                        class="bg-yellow-50/50 mt-2 shadow-2xl rounded-xl h-[13.5rem] w-[20rem]"
-                    >
-                        <Link :href="route('trips.one', trip.id)">
-                            <div class="w-[20rem] flex justify-center">
-                                <div class="w-[50%] h-[65%]">
-                                    <img
-                                        :src="imagePaths[trip.title].source_image"
-                                        alt=""
-                                        class="h-[8rem] w-[10rem] rounded-tl-xl"
-                                    />
+        <div class="overflow-y-scroll w-screen min-h-screen">
+            <h1 class="mt-20 text-2xl font-semibold text-center">Trips</h1>
+            <div class="flex overflow-auto flex-wrap gap-6 justify-center py-8">
+                <div
+                    v-for="trip in trips"
+                    :key="trip.id"
+                    class="mt-2 rounded-xl shadow-2xl bg-yellow-50/50 h-[13.5rem] w-[20rem]"
+                >
+                    <Link :href="route('trips.one', trip.id)">
+                        <div class="flex justify-center w-[20rem]">
+                            <div class="w-[50%] h-[65%]">
+                                <img
+                                    :src="imagePaths[trip.title].source_image"
+                                    alt=""
+                                    class="rounded-tl-xl h-[8rem] w-[10rem]"
+                                />
 
-                                    <p class="py-[0.3rem] text-[0.9rem] text-center font-medium">
-                                        {{ trip.source }}
-                                    </p>
-                                </div>
-                                <div class="w-[50%] h-[65%] rounded-lg">
-                                    <img
-                                        :src="imagePaths[trip.title].destination_image"
-                                        alt=""
-                                        class="h-[8rem] w-[10rem] rounded-tr-xl"
-                                    />
-                                    <p class="py-[0.3rem] text-[0.9rem] font-medium text-center">
-                                        {{ trip.destination }}
-                                    </p>
-                                </div>
+                                <p
+                                    class="font-medium text-center py-[0.3rem] text-[0.9rem]"
+                                >
+                                    {{ trip.source }}
+                                </p>
                             </div>
-                            <div class="pt-0 px-3 text-center">
-                                <p class="mb-1 text-[0.9rem] font-semibold">{{ trip.date }}</p>
-                                <p class="text-[1.0rem] font-semibold">NGN{{ trip.price }}</p>
+                            <div class="w-[50%] h-[65%] rounded-lg">
+                                <img
+                                    :src="
+                                        imagePaths[trip.title].destination_image
+                                    "
+                                    alt=""
+                                    class="rounded-tr-xl h-[8rem] w-[10rem]"
+                                />
+                                <p
+                                    class="font-medium text-center py-[0.3rem] text-[0.9rem]"
+                                >
+                                    {{ trip.destination }}
+                                </p>
                             </div>
-                        </Link>
-                    </div>
+                        </div>
+                        <div class="px-3 pt-0 text-center">
+                            <p class="mb-1 font-semibold text-[0.9rem]">
+                                {{ trip.date }}
+                            </p>
+                            <p class="font-semibold text-[1.0rem]">
+                                NGN{{ trip.price }}
+                            </p>
+                        </div>
+                    </Link>
                 </div>
             </div>
-        </GuestLayout>
+        </div>
     </AuthenticatedLayout>
 </template>

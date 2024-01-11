@@ -295,8 +295,9 @@ const reviews = [
                 </div>
                 <div class="py-8 mt-8 min-h-auto bg-green-50/20">
                     <h4 class="mb-2 text-left text-[20px]">Next Trips</h4>
-                    <div class="flex overflow-auto gap-6 justify-center py-8 pl-72">
-                        <div v-for="trip in trips" class="mt-2 bg-yellow-50 rounded-lg shadow-2xl h-[13.5rem] w-[20rem]">
+                    <div class="flex overflow-auto gap-6 justify-center py-8 pl-20">
+                        <div v-for="trip in trips" :key="trip.id"
+                            class="mt-2 rounded-lg shadow-2xl bg-yellow-50/50 h-[13.5rem] w-[20rem]">
                             <div class="flex justify-center w-[20rem]">
                                 <div class="w-[50%] h-[65%]">
                                     <img :src="trip.source_image" alt="Source station"
@@ -337,7 +338,7 @@ const reviews = [
 
                     <div
                         class="max-sm:w-full m-auto md:mt-6 md:w-[60%] md:max-h-[30rem] overflow-y-auto w-[65%] grid grid-cols-2 md:grid-cols-2 xl:grid-cols-3 flex-wrap gap-2">
-                        <div v-for="review in reviews"
+                        <div v-for="review in reviews" :key="review.id"
                             class="flex flex-wrap justify-between my-4 mx-1 rounded-lg shadow-2xl sm:w-full min-h-64 bg-green-700/30 shadow-green-100 md:w-[13rem] lg:w-[14rem]">
                             <p class="px-4 pt-4 text-[0.8rem]">
                                 "{{ review.text }}"

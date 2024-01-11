@@ -1,5 +1,5 @@
 <script setup>
-import GuestLayout from "@/Layouts/GuestLayout.vue";
+import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import Tickettypes from "./Tickettypes.vue";
 
 const imagePaths = {
@@ -59,22 +59,29 @@ const { trip } = defineProps({
 </script>
 
 <template>
-    <GuestLayout>
-        <div class="min-h-screen w-screen mt-12">
-            <h1 class="text-2xl text-center mt-24 mb-6">Select a Ticket</h1>
-            {{ console.log(imagePaths[trip.title].source_image) }}
-            <div class="flex flex-col overflow-auto py- gap-6 justify-center items-center">
+    <AuthenticatedLayout>
+        <div
+            class="flex flex-col justify-center w-screen h-screen max-sm:mt-20"
+        >
+            <h1 class="mt-24 mb-6 text-2xl text-center">Select a Ticket</h1>
+            <div
+                class="flex overflow-auto flex-col gap-6 justify-center items-center py-"
+            >
                 <Tickettypes :trip="trip" />
-                <div class="bg-yellow-50/50 mt-2 shadow-2xl rounded-xl h-[17.0rem] w-[20rem]">
-                    <div class="w-[20rem] flex justify-center">
+                <div
+                    class="mt-2 rounded-xl shadow-2xl bg-yellow-50/50 h-[17.0rem] w-[20rem]"
+                >
+                    <div class="flex justify-center w-[20rem]">
                         <div class="w-[50%] h-[65%]">
                             <img
                                 :src="imagePaths[trip.title].source_image"
                                 alt=""
-                                class="h-[8rem] w-[10rem] rounded-tl-xl"
+                                class="rounded-tl-xl h-[8rem] w-[10rem]"
                             />
 
-                            <p class="py-[0.3rem] text-[0.9rem] text-center font-medium">
+                            <p
+                                class="font-medium text-center py-[0.3rem] text-[0.9rem]"
+                            >
                                 {{ trip.source }}
                             </p>
                         </div>
@@ -82,27 +89,45 @@ const { trip } = defineProps({
                             <img
                                 :src="imagePaths[trip.title].destination_image"
                                 alt=""
-                                class="h-[8rem] w-[10rem] rounded-tr-xl"
+                                class="rounded-tr-xl h-[8rem] w-[10rem]"
                             />
-                            <p class="py-[0.3rem] text-[0.9rem] font-medium text-center">
+                            <p
+                                class="font-medium text-center py-[0.3rem] text-[0.9rem]"
+                            >
                                 {{ trip.destination }}
                             </p>
                         </div>
                     </div>
                     <div
-                        class="mt-3 px-3 text-center grid grid-cols-2 gap-1 justify-center items-center"
+                        class="grid grid-cols-2 gap-1 justify-center items-center px-3 mt-3 text-center"
                     >
-                        <p class="mb-1 text-[0.8rem] font-semibold flex flex-col">
-                            Date:<span class="text-[0.9rem]">{{ trip.date }}</span>
+                        <p
+                            class="flex flex-col mb-1 font-semibold text-[0.8rem]"
+                        >
+                            Date:<span class="text-[0.9rem]">{{
+                                trip.date
+                            }}</span>
                         </p>
-                        <p class="mb-1 text-[0.8rem] font-semibold flex flex-col">
-                            Seats Available:<span class="text-[0.9rem]">{{ trip.seats }}</span>
+                        <p
+                            class="flex flex-col mb-1 font-semibold text-[0.8rem]"
+                        >
+                            Seats Available:<span class="text-[0.9rem]">{{
+                                trip.seats
+                            }}</span>
                         </p>
-                        <p class="mb-1 text-[0.8rem] font-semibold flex flex-col">
-                            Departure:<span class="text-[0.9rem]">{{ trip.departure_time }}</span>
+                        <p
+                            class="flex flex-col mb-1 font-semibold text-[0.8rem]"
+                        >
+                            Departure:<span class="text-[0.9rem]">{{
+                                trip.departure_time
+                            }}</span>
                         </p>
-                        <p class="mb-1 text-[0.8rem] font-semibold flex flex-col">
-                            Arrival:<span class="text-[0.9rem]">{{ trip.arrival_time }}</span>
+                        <p
+                            class="flex flex-col mb-1 font-semibold text-[0.8rem]"
+                        >
+                            Arrival:<span class="text-[0.9rem]">{{
+                                trip.arrival_time
+                            }}</span>
                         </p>
                         <!-- 'title', 'source', 'destination', 'seats', 'date', 'departure_time', -->
                         <!-- 'arrival_time', -->
@@ -110,5 +135,5 @@ const { trip } = defineProps({
                 </div>
             </div>
         </div>
-    </GuestLayout>
+    </AuthenticatedLayout>
 </template>
