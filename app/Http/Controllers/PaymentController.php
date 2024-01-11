@@ -41,8 +41,11 @@ class PaymentController extends Controller
         try {
             $paymentDetails = Paystack::getPaymentData();
             $booking = Session::get('booking');
-            $tickettype = Session::get('tickettype');
 
+            if (!$booking) {
+                Log::error('Payment Error: Booking session data not found.');
+                return redirect('trips')->with('error', 'Payment processing failed due to missing booking information.');
+            }
             return $this->handlePaymentStatus($paymentDetails, $booking);
         } catch (\Exception $e) {
             Log::error('Payment Error: ' . $e->getMessage());
