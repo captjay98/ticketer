@@ -15,13 +15,11 @@ class checkAdmin
      */
     public function handle(Request $request, Closure $next): Response
     {
-
-            $user = $request->user();
-            if ($user->is_staff && in_array($user->account_type, ["admin", "superuser"])) {
-                return $next($request);
-            }
-            return abort(403, 'Unauthorized, ADMIN ONLY ROUTE.');
-
-
+        $user = $request->user();
+        if ($user->is_admin && $user->accountype  == "staff" || "admin" || "superuser") {
+            return $next($request);
+        } else {
+            return abort(403, 'Unauthorized, Only an Admin can Perform this action.');
+        }
     }
 }
