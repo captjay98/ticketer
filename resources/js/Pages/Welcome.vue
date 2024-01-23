@@ -169,11 +169,15 @@ const reviews = [
         text: "Bubu really tried here, blah blah blah.",
     },
 ];
+
+const searchTrips = () => {
+    form.post(route("trips.search"), form.value);
+};
 </script>
 
 <template>
     <Head title="Welcome To Ticketer" />
-
+    {{ console.log(form) }}
     <PageHeader :links="links" />
     <div class="w-full h-auto bg-">
         <div class="rounded-lg w-[95%] m-auto min-h-auto">
@@ -181,7 +185,7 @@ const reviews = [
                 class="mb-4 bg-[url('/storage/home-images/train2.webp')] bg-cover bg-no-repeat border-none rounded-2xl h-[230px] m-auto">
                 <!-- <div class=""> -->
                 <div class="rounded-lg bg-[hsla(0,0%,0%,0.6)] h-full">
-                    <div class="flex relative flex-col justify-center items-center m-auto text-white">
+                    <div class="flex z-0 flex-col justify-center items-center m-auto text-white relativ">
                         <div class="my-20 max-sm:my-10">
                             <h1 class="text-4xl tracking-tight text-center max-sm:text-4xl">
                                 Book Your Train Tickets With Ease on
@@ -192,14 +196,14 @@ const reviews = [
                                 And travelling is even better.
                             </p>
                         </div>
-                        <form
-                            class="flex absolute flex-wrap justify-center py-1 px-1 mt-4 rounded-md md:justify-start -bottom-[25px] max-sm:-bottom-[70px]">
+                        <form @submit.prevent="searchTrips"
+                            class="flex relative flex-wrap justify-center py-1 px-1 mt-4 rounded-md md:justify-start  bottom-[3.5rem] max-sm:bottom-[2.5rem]">
                             <!-- class="py-1 px-2 w-full rounded-md border-green-200 focus:border-none focus:ring-0 bg-yellow-50/50 h-[1.7rem] focus:outline-green-500" -->
 
                             <label for="source"></label>
                             <select
                                 class="w-28 h-14 text-center bg-yellow-50 rounded-l-2xl border-none appearance-none focus:ring-0 focus:outline-none text-[1rem] text-slate-900 xl:w-[180px]"
-                                name="source" id="source" v-model="form.source" placeholder="Source">
+                                required name="source" id="source" v-model="form.source">
                                 <option value="" disabled selected>
                                     Source
                                 </option>
@@ -211,7 +215,7 @@ const reviews = [
                             <label for="destination"></label>
                             <select
                                 class="w-28 h-14 text-center bg-yellow-50 border-none focus:ring-0 focus:outline-none text-[1rem] text-slate-900 xl:w-[180px]"
-                                name="destination" id="destination" v-model="form.destination">
+                                required name="destination" id="destination" v-model="form.destination">
                                 <option value="" disabled selected>
                                     Destination
                                 </option>
@@ -222,20 +226,24 @@ const reviews = [
                             </select>
                             <input
                                 class="w-28 h-14 text-center bg-yellow-50 border-none focus:outline-none text-[1rem] max-sm:rounded-r-2xl text-slate-900 xl:w-[180px] focus:ring-none"
-                                type="date" value="" id="" placeholder="Date" />
-                            <Link
-                                class="py-1 px-3 w-28 bg-green-500 rounded-r-2xl duration-300 hover:text-white hover:bg-green-700 active:bg-green-900 animate-all max-sm:rounded-xl text-slate-800"
-                                as="button" :href="route('trips.search')" :data="{
-                                    source: form.source,
-                                    destination: form.destination,
-                                    date: form.date,
-                                }" method="post">
-                            Find Trip
-                            </Link>
+                                disabled type="date" :v-model="form.date" id="date" placeholder="date" />
+                            <button
+                                class="py-1 px-3 w-28 bg-green-500 rounded-r-2xl duration-300 hover:text-white hover:bg-green-700 active:bg-green-900 animate-all max-sm:rounded-xl text-slate-800">
+                                Find Trip
+                            </button>
+
+                            <!-- <Link -->
+                            <!--     class="py-1 px-3 w-28 bg-green-500 rounded-r-2xl duration-300 hover:text-white hover:bg-green-700 active:bg-green-900 animate-all max-sm:rounded-xl text-slate-800" -->
+                            <!--     as="button" :href="route('trips.search')" :data="form.value" method="post"> -->
+                            <!-- Find Trip -->
+                            <!-- </Link> -->
                         </form>
                     </div>
                 </div>
             </div>
+            <!-- source: form.source, -->
+            <!--                                     destination: form.destination, -->
+            <!--                                     date: form.date, -->
 
             <div class="mt-12 h-auto bg-yellow-50/20 max-sm:mt-28">
                 <p class="mb-2 text-left text-[20px]">Our Destinations</p>

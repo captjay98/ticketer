@@ -22,52 +22,39 @@ const drop = ref(false);
 </script>
 
 <template>
-    <nav class="hidden md:flex font-semibold text-sm">
-        <ul v-for="link in links" class="flex">
-            <li
-                class="border-green-500 ml-10 rounded-md hover:text-green-500 hover:underline hover:underline-offset-4"
-            >
-                <!-- hover:text-green-900 hover:bg-green-500  -->
+    <nav class="hidden text-sm font-semibold md:flex">
+        <ul :key="link.name" v-for="link in links" class="flex">
+            <li class="ml-10 rounded-md border-green-500 hover:text-green-500 hover:underline hover:underline-offset-4">
                 <Link :href="link.path">{{ link.name }}</Link>
             </li>
         </ul>
         <ul>
             <li class="ml-2 hover:text-blue-700" v-show="showLink(customer)">
                 <Link :href="route('profile.edit')">Dashboard</Link>
-                <!-- :href="route('customer.dashboard')" -->
             </li>
             <li class="ml-2 hover:text-black" v-show="showLink(admin)">
                 <Link :href="route('admin.dashboard')">Dashboard</Link>
-                <!-- :href="route('admin.dashboard')" -->
             </li>
         </ul>
     </nav>
-    <div class="md:hidden flex space-x-5">
+    <div class="flex space-x-5 md:hidden">
         <button class="absolute right-10" @click="drop = !drop">
-            <img
-                class="h-8 w-8 py-1 px-1"
-                :src="'/storage/icons/hamburger.png'"
-                alt="Profile Avatar"
-            />
+            <img class="py-1 px-1 w-8 h-8" :src="'/storage/icons/hamburger.png'" alt="hamburger" />
         </button>
 
-        <nav v-show="drop" class="transition ease-in duration-400 bg-green-500">
-            <div
-                class="transition ease-in duration-400 text-yellow-200 bg-green-500 tracking-wider absolute top-12 right-3 px-4 py-4 rounded-md"
-            >
-                <ul v-for="link in links" class="px-2 py-2 text-left">
+        <nav v-show="drop" class="absolute right-3 top-12 z-10 bg-green-500 transition-all ease-in duration-400">
+            <div class="py-4 px-4 tracking-wider text-yellow-200 bg-green-500 rounded-md">
+                <ul :key="link.name" v-for="link in links" class="py-2 px-2 text-left">
                     <li>
                         <Link :href="link.path">{{ link.name }}</Link>
                     </li>
                 </ul>
-                <ul class="px-2 py-2 text-left">
+                <ul class="py-2 px-2 text-left">
                     <li v-show="showLink(customer)">
                         <Link :href="route('profile.edit')">Dashboard</Link>
-                        <!-- :href="route('customer.dashboard')" -->
                     </li>
                     <li v-show="showLink(admin)">
                         <Link :href="route('admin.dashboard')">Dashboard</Link>
-                        <!-- :href="route('admin.dashboard')" -->
                     </li>
                 </ul>
             </div>

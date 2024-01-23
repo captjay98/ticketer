@@ -62,49 +62,39 @@ const imagePaths = {
         <div class="overflow-y-scroll w-screen min-h-screen">
             <h1 class="mt-20 text-2xl font-semibold text-center">Trips</h1>
             <div class="flex overflow-auto flex-wrap gap-6 justify-center py-8">
-                <div
-                    v-for="trip in trips"
-                    :key="trip.id"
-                    class="mt-2 rounded-xl shadow-2xl bg-yellow-50/50 h-[13.5rem] w-[20rem]"
-                >
+                <div v-if="trips.length === 0">
+                    <h1 class="py-10 text-2xl font-semibold text-center">
+                        No Trips Found
+                    </h1>
+                </div>
+                <div v-for="trip in trips" :key="trip.id"
+                    class="mt-2 rounded-xl shadow-2xl bg-yellow-50/50 h-[13.5rem] w-[20rem]">
                     <Link :href="route('trips.one', trip.id)">
-                        <div class="flex justify-center w-[20rem]">
-                            <div class="w-[50%] h-[65%]">
-                                <img
-                                    :src="imagePaths[trip.title].source_image"
-                                    alt=""
-                                    class="rounded-tl-xl h-[8rem] w-[10rem]"
-                                />
+                    <div class="flex justify-center w-[20rem]">
+                        <div class="w-[50%] h-[65%]">
+                            <img :src="imagePaths[trip.title].source_image" alt=""
+                                class="rounded-tl-xl h-[8rem] w-[10rem]" />
 
-                                <p
-                                    class="font-medium text-center py-[0.3rem] text-[0.9rem]"
-                                >
-                                    {{ trip.source }}
-                                </p>
-                            </div>
-                            <div class="w-[50%] h-[65%] rounded-lg">
-                                <img
-                                    :src="
-                                        imagePaths[trip.title].destination_image
-                                    "
-                                    alt=""
-                                    class="rounded-tr-xl h-[8rem] w-[10rem]"
-                                />
-                                <p
-                                    class="font-medium text-center py-[0.3rem] text-[0.9rem]"
-                                >
-                                    {{ trip.destination }}
-                                </p>
-                            </div>
-                        </div>
-                        <div class="px-3 pt-0 text-center">
-                            <p class="mb-1 font-semibold text-[0.9rem]">
-                                {{ trip.date }}
-                            </p>
-                            <p class="font-semibold text-[1.0rem]">
-                                NGN{{ trip.price }}
+                            <p class="font-medium text-center py-[0.3rem] text-[0.9rem]">
+                                {{ trip.source }}
                             </p>
                         </div>
+                        <div class="w-[50%] h-[65%] rounded-lg">
+                            <img :src="imagePaths[trip.title].destination_image
+                                " alt="" class="rounded-tr-xl h-[8rem] w-[10rem]" />
+                            <p class="font-medium text-center py-[0.3rem] text-[0.9rem]">
+                                {{ trip.destination }}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-3 pt-0 text-center">
+                        <p class="mb-1 font-semibold text-[0.9rem]">
+                            {{ trip.date }}
+                        </p>
+                        <p class="font-semibold text-[1.0rem]">
+                            NGN{{ trip.price }}
+                        </p>
+                    </div>
                     </Link>
                 </div>
             </div>
