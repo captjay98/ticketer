@@ -8,9 +8,9 @@
     <title inertia>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link rel="stylesheet" href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" media="print"
-        onload="this.media='all'">
+    {{-- <link rel="preconnect" href="https://fonts.bunny.net"> --}}
+    {{-- <link rel="stylesheet" href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" media="print" --}}
+    {{-- onload="this.media='all'"> --}}
     <link rel="preload" as="image" href="/storage/home-images/train2.webp">
 
     <!-- Scripts -->

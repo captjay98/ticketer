@@ -23,7 +23,7 @@ const submit = () => {
     <GuestLayout>
 
         <Head title="Register" />
-        <div class="flex fixed flex-col justify-center items-center w-full">
+        <div class="flex fixed flex-col justify-center items-center w-full mt-4 overflow-auto">
             <div class="grid w-full h-full md:grid-cols-2">
                 <div class="m-auto max-sm:mb-[1rem] w-[22rem] rouned-lg md:w-[24rem] lg:w-[29rem] xl:w-[40rem]">
                     <img :src="'/storage/home-images/kano-station.webp'" class="w-full h-full rounded-lg"
