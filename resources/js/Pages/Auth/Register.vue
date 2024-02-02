@@ -97,7 +97,7 @@ const submit = () => {
                                 <div>
                                     <input
                                         class="mx-2 my-2 border-green-200 bg-green-50/20 rounded-md w-[90%] m-auto shadow-xl focus:outline-green-500 focus:border-none focus:ring-0"
-                                        type="password" id="password" placeholder="Confirm Password"
+                                        type="password" id="password_confirmation" placeholder="Confirm Password"
                                         v-model="form.password_confirmation" required />
                                     <div v-show="form.errors.password_confirmation
                                         ">
@@ -117,7 +117,7 @@ const submit = () => {
                                 <Link :href="route('login')">
                                 <p class="px-6 pt-2 text-xs text-left">
                                     Already a Member?
-                                    <span class="text-sm text-green-500">
+                                    <span class="text-sm text-green-00">
                                         Sign in.</span>
                                 </p>
                                 </Link>

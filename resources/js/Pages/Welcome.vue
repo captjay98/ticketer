@@ -187,7 +187,7 @@ const searchTrips = () => {
                         <div class="my-20 max-sm:my-10">
                             <h1 class="text-4xl tracking-tight text-center max-sm:text-[2rem]">
                                 Book Your Train Tickets
-                                <br /> With Ease on <span class="text-green-500">Ticketer</span>
+                                <br class="md:hidden" /> With Ease on <span class="text-green-500">Ticketer</span>
                             </h1>
                             <p class="mt-2 text-xl text-center max-sm:text-[14px] max-sm:px-12">
                                 Booking is as easy as it can get on Ticketer,
@@ -196,9 +196,9 @@ const searchTrips = () => {
                         </div>
                         <form @submit.prevent="searchTrips"
                             class="flex relative flex-wrap justify-center py-1 px-1 mt-4 rounded-md md:justify-start  bottom-[3.5rem] max-sm:bottom-[2.5rem]">
-                            <label for="source"></label>
+                            <label for="source" class="sr-only">Source</label>
                             <select
-                                class="w-28 h-14 text-center bg-yellow-50 rounded-l-2xl border-none appearance-none focus:ring-0 focus:outline-none text-[1rem] text-slate-900 xl:w-[180px]"
+                                class="w-28 h-14 text-center bg-yellow-50 rounded-l-2xl border-none appearance-none focus:ring-0 focus:outline-none max-sm:text-[0.7rem] text-slate-900 xl:w-[180px]"
                                 required name="source" id="source" v-model="form.source">
                                 <option value="" disabled selected>
                                     Source
@@ -208,9 +208,9 @@ const searchTrips = () => {
                                 </option>
                             </select>
 
-                            <label for="destination"></label>
+                            <label for="destination" class="sr-only">Destination</label>
                             <select
-                                class="w-28 h-14 text-center bg-yellow-50 border-none focus:ring-0 focus:outline-none text-[1rem] text-slate-900 xl:w-[180px]"
+                                class="w-28 h-14 text-center bg-yellow-50 border-none focus:ring-0 focus:outline-none max-sm:text-[0.7rem] text-slate-900 xl:w-[180px]"
                                 required name="destination" id="destination" v-model="form.destination">
                                 <option value="" disabled selected>
                                     Destination
@@ -221,10 +221,10 @@ const searchTrips = () => {
                                 </option>
                             </select>
                             <input
-                                class="w-28 h-14 text-center bg-yellow-50 border-none focus:outline-none text-[1rem] max-sm:rounded-r-2xl text-slate-900 xl:w-[180px] focus:ring-none"
+                                class="w-28 h-14 text-center bg-yellow-50 border-none focus:outline-none max-sm:text-[0.7rem] max-sm:rounded-r-2xl text-slate-900 xl:w-[180px] focus:ring-none"
                                 disabled type="date" :v-model="form.date" id="date" placeholder="date" />
                             <button
-                                class="py-1 px-3 w-28 bg-green-500 rounded-r-2xl duration-300 hover:text-white hover:bg-green-700 active:bg-green-900 animate-all max-sm:rounded-xl text-slate-800">
+                                class="py-2 px-4 w-28 bg-green-500 rounded-r-2xl duration-300 hover:text-white hover:bg-green-700 active:bg-green-900 animate-all max-sm:rounded-xl text-white">
                                 Find Trip
                             </button>
                         </form>
@@ -232,7 +232,7 @@ const searchTrips = () => {
                 </div>
             </div>
             <div class="mt-12 h-auto bg-yellow-50/20 max-sm:mt-28">
-                <p class="mb-2 text-left text-[20px]">Our Destinations</p>
+                <h2 class="mb-2 text-left text-[20px]">Our Destinations</h2>
                 <div class="">
                     <div
                         class="grid gap-5 m-auto w-full md:grid-cols-4 md:grid-rows-2 max-sm:grid-cols-4 max-sm:grid-rows- max-sm:h[600px] md:h-[250px] lg:h-[350px]">
@@ -288,13 +288,13 @@ const searchTrips = () => {
                     </div>
                 </div>
                 <div class="py-8 mt-8 min-h-auto bg-green-50/20">
-                    <h4 class="mb-2 text-left text-[20px]">Next Trips</h4>
+                    <h2 class="mb-2 text-left text-[20px]">Next Trips</h2>
                     <div class=" flex overflow-auto gap-6 justify-center py-8 max-sm:pl-80 pl-20">
                         <div v-for="trip in trips" :key="trip.id"
                             class=" mt-2 rounded-lg shadow-2xl bg-yellow-50/50 h-[13.5rem] w-[20rem] ">
                             <div class="flex justify-center w-[20rem]">
                                 <div class="w-[50%] h-[65%]">
-                                    <img :src="trip.source_image" alt="Source station"
+                                    <img :src="trip.source_image" alt="Source station" loading="lazy"
                                         class="rounded-tl-lg h-[8rem] w-[10rem]" />
 
                                     <p class="font-medium text-center py-[0.3rem] text-[0.9rem]">
@@ -302,7 +302,7 @@ const searchTrips = () => {
                                     </p>
                                 </div>
                                 <div class="w-[50%] h-[65%] rounded-lg">
-                                    <img :src="trip.destination_image" alt="Destination station"
+                                    <img :src="trip.destination_image" alt="Destination station" loading="lazy"
                                         class="rounded-tr-lg h-[8rem] w-[10rem]" />
                                     <p class="font-medium text-center py-[0.3rem] text-[0.9rem]">
                                         {{ trip.destination }}
@@ -325,8 +325,11 @@ const searchTrips = () => {
                 <div class="flex overflow-y-scroll flex-wrap justify-between">
                     <div class="lg:w-[30%] mt-4 md: md:w-[30%] m-auto rounded-xl">
                         <div class="rounded-xl h-[33rem] w-[16rem]">
-                            <video class="w-full rounded-xl" type="video/mp4" :src="'/storage/home-images/train-vid.mp4'"
-                                alt="Train Interior" autoplay loop muted loading="lazy"></video>
+                            <video class="w-full rounded-xl">
+                                <source :src="'/storage/home-images/train-vid.mp4'" type="video/mp4" alt="Train Interior"
+                                    autoplay loop muted loading="lazy" />
+                                <track :src="'/storage/home-images/train-vid.mp4'" kind="Interior view of the train" />
+                            </video>
                         </div>
                     </div>
 
