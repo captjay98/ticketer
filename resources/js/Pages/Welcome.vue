@@ -187,15 +187,18 @@ const searchTrips = () => {
                         <div class="my-20 max-sm:my-10">
                             <h1 class="text-4xl tracking-tight text-center max-sm:text-[2rem]">
                                 Book Your Train Tickets
-                                <br class="md:hidden" /> With Ease on <span class="text-green-500">Ticketer</span>
+                                <br class="md:hidden" />
+                                With Ease on
+                                <span class="text-green-500">Ticketer</span>
                             </h1>
                             <p class="mt-2 text-xl text-center max-sm:text-[14px] max-sm:px-12">
                                 Booking is as easy as it can get on Ticketer,
-                                <br class="md:hidden" /> And travelling is even better.
+                                <br class="md:hidden" />
+                                And travelling is even better.
                             </p>
                         </div>
                         <form @submit.prevent="searchTrips"
-                            class="flex relative flex-wrap justify-center py-1 px-1 mt-4 rounded-md md:justify-start  bottom-[3.5rem] max-sm:bottom-[1.8rem]">
+                            class="flex relative flex-wrap justify-center py-1 px-1 mt-4 rounded-md md:justify-start bottom-[3.5rem] max-sm:bottom-[1.8rem]">
                             <label for="source" class="sr-only">Source</label>
                             <select
                                 class="w-28 h-14 text-center bg-yellow-50 rounded-l-2xl border-none appearance-none focus:ring-0 focus:outline-none max-sm:text-[0.7rem] text-slate-900 xl:w-[180px]"
@@ -224,7 +227,7 @@ const searchTrips = () => {
                                 class="w-28 h-14 text-center bg-yellow-50 border-none focus:outline-none max-sm:text-[0.7rem] max-sm:rounded-r-2xl text-slate-900 xl:w-[180px] focus:ring-none"
                                 disabled type="date" :v-model="form.date" id="date" placeholder="date" />
                             <button
-                                class="shadow-2xl shadow-green-500 max-sm:mt-2 py-2 px-4 w-28 bg-green-500 rounded-r-2xl duration-300 hover:text-white hover:bg-green-700 active:bg-green-900 animate-all max-sm:rounded-xl text-slate-800">
+                                class="py-2 px-4 w-28 bg-green-500 rounded-r-2xl shadow-2xl duration-300 hover:text-white hover:bg-green-700 active:bg-green-900 shadow-green-500 max-sm:mt-2 animate-all max-sm:rounded-xl text-slate-800">
                                 Find Trip
                             </button>
                         </form>
@@ -232,14 +235,16 @@ const searchTrips = () => {
                 </div>
             </div>
             <div class="mt-12 h-auto bg-yellow-50/20 max-sm:mt-28">
-                <h2 class="mb-2 text-left text-[1.5rem] font-medium">Our Destinations</h2>
+                <h2 class="mb-2 font-medium text-left text-[1.5rem]">
+                    Our Destinations
+                </h2>
                 <div class="">
                     <div
                         class="grid gap-5 m-auto w-full md:grid-cols-4 md:grid-rows-2 max-sm:grid-cols-4 max-sm:grid-rows- max-sm:h[600px] md:h-[250px] lg:h-[350px]">
                         <div
                             class="col-start-1 col-end-2 row-start-1 row-end-3 rounded-xl shadow-lg hover:shadow-2xl max-sm:col-start-1 max-sm:col-end-3 max-sm:row-start-1 max-sm:row-end-3">
                             <img class="w-full h-full bg-white rounded-lg" width="300" height="300"
-                                :src="'/storage/home-images/kaduna-station.webp'" alt="Train Station" loading="lazy" />
+                                :src="'/storage/home-images/kaduna-station.webp'" alt="Train Station" />
                             <span
                                 className="relative bottom-8 py-1 px-4 ml-2 text-center text-white rounded-lg text-[12px] bg-black/70">Kaduna
                             </span>
@@ -247,7 +252,7 @@ const searchTrips = () => {
                         <div
                             class="col-start-2 col-end-3 row-start-1 row-end-2 rounded-xl shadow-lg hover:shadow-2xl max-sm:col-start-3 max-sm:col-end-5 max-sm:row-start-1 max-sm:row-end-2">
                             <img class="w-full h-full bg-white rounded-lg" width="200" height="200"
-                                :src="'/storage/home-images/abuja-station.webp'" alt="Train Station" loading="lazy" />
+                                :src="'/storage/home-images/abuja-station.webp'" alt="Train Station" />
                             <span
                                 className="relative bottom-8 py-1 px-4 ml-2 text-center text-white rounded-lg text-[12px] bg-black/70">Abuja
                             </span>
@@ -256,7 +261,7 @@ const searchTrips = () => {
                             class="col-start-2 col-end-3 row-start-2 row-end-3 rounded-xl shadow-lg hover:shadow-2xl max-sm:col-start-3 max-sm:col-end-5 max-sm:row-start-2 max-sm:row-end-3">
                             <img class="w-full h-full bg-white rounded-lg shadow-xl"
                                 :src="'/storage/home-images/lagos-station.webp'" width="300" height="300"
-                                alt="Train Station" loading="lazy" />
+                                alt="Train Station" />
                             <span
                                 className="relative bottom-8 py-1 px-4 ml-2 text-center text-white rounded-lg text-[12px] bg-black/70">Lagos
                             </span>
@@ -264,8 +269,8 @@ const searchTrips = () => {
                         <div
                             class="col-start-3 col-end-4 row-start-1 row-end-3 rounded-xl shadow-xl hover:shadow-2xl max-sm:col-start-3 max-sm:col-end-5 max-sm:row-start-3 max-sm:row-end-5">
                             <img class="w-full h-full bg-white rounded-lg shadow-xl hover:shadow-2xl"
-                                :src="'/storage/home-images/kano-station.webp'" width="200" height="200" alt="Train Station"
-                                loading="lazy" />
+                                :src="'/storage/home-images/kano-station.webp'" width="200" height="200"
+                                alt="Train Station" />
                             <span
                                 className="relative bottom-8 py-1 px-4 ml-2 text-center text-white rounded-lg text-[12px] bg-black/70">Kano
                             </span>
@@ -273,8 +278,7 @@ const searchTrips = () => {
                         <div
                             class="col-start-4 col-end-5 row-start-1 row-end-2 rounded-xl shadow-lg hover:shadow-2xl max-sm:col-start-1 max-sm:col-end-3 max-sm:row-start-3 max-sm:row-end-4">
                             <img class="w-full h-full bg-white rounded-lg shadow-xl hover:shadow-2xl"
-                                :src="'/storage/home-images/ibd-sta.webp'" width="300" height="300" alt="Train Station"
-                                loading="lazy" />
+                                :src="'/storage/home-images/ibd-sta.webp'" width="300" height="300" alt="Train Station" />
                             <span
                                 className="relative bottom-8 py-1 px-4 ml-2 text-center text-white rounded-lg text-[12px] bg-black/70">Ibadan
                             </span>
@@ -283,8 +287,7 @@ const searchTrips = () => {
                         <div
                             class="col-start-4 col-end-5 row-start-2 row-end-3 rounded-xl shadow-lg hover:shadow-2xl max-sm:col-start-1 max-sm:col-end-3 max-sm:row-start-4 max-sm:row-end-5">
                             <img class="w-full h-full bg-white rounded-lg shadow-xl hover:shadow-2xl"
-                                :src="'/storage/home-images/station.webp'" width="300" height="300" alt="Train Station"
-                                loading="lazy" />
+                                :src="'/storage/home-images/station.webp'" width="300" height="300" alt="Train Station" />
                             <span
                                 className="relative bottom-8 py-1 px-4 ml-2 text-center text-white rounded-lg text-[12px] bg-black/70">Warri
                             </span>
@@ -292,10 +295,12 @@ const searchTrips = () => {
                     </div>
                 </div>
                 <div class="py-8 mt-8 min-h-auto bg-green-50/20">
-                    <h2 class="mb-2 text-left  text-[1.5rem] font-medium">Next Trips</h2>
-                    <div class=" flex overflow-auto gap-6 justify-center py-8 max-sm:pl-80 pl-20">
+                    <h2 class="mb-2 font-medium text-left text-[1.5rem]">
+                        Next Trips
+                    </h2>
+                    <div class="flex overflow-auto gap-6 justify-center py-8 pl-20 max-sm:pl-80" tab-index="0">
                         <div v-for="trip in trips" :key="trip.id"
-                            class=" mt-2 rounded-lg shadow-2xl bg-yellow-50/50 h-[13.5rem] w-[20rem] ">
+                            class="mt-2 rounded-lg shadow-2xl bg-yellow-50/50 h-[13.5rem] w-[20rem]">
                             <div class="flex justify-center w-[20rem]">
                                 <div class="w-[50%] h-[65%]">
                                     <img :src="trip.source_image" alt="Source station" loading="lazy"
@@ -346,8 +351,8 @@ const searchTrips = () => {
                             </p>
                             <div class="flex items-center py-2 my-2 w-full">
                                 <div class="ml-4 w-14 h-12">
-                                    <img :src="review.user.avatar" class="w-full h-full rounded-full"
-                                        alt="Customer Image" />
+                                    <img :src="review.user.avatar" class="w-full h-full rounded-full" alt="Customer Image"
+                                        loading="lazy" />
                                 </div>
                                 <div class="py-1 px-1">
                                     <h3 class="px-2 text-[1.0rem]">
