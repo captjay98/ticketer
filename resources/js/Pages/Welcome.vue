@@ -177,19 +177,17 @@ const searchTrips = () => {
 
 <template>
     <Head title="Welcome To Ticketer" />
-    {{ console.log(form) }}
     <PageHeader :links="links" />
     <div class="w-full h-auto bg-">
         <div class="rounded-lg w-[95%] m-auto min-h-auto">
             <div
                 class="mb-4 bg-[url('/storage/home-images/train2.webp')] bg-cover bg-no-repeat border-none rounded-2xl h-[230px] m-auto">
-                <!-- <div class=""> -->
                 <div class="rounded-lg bg-[hsla(0,0%,0%,0.6)] h-full">
                     <div class="flex z-0 flex-col justify-center items-center m-auto text-white relativ">
                         <div class="my-20 max-sm:my-10">
-                            <h1 class="text-4xl tracking-tight text-center max-sm:text-4xl">
-                                Book Your Train Tickets With Ease on
-                                <span class="text-green-500">Ticketer</span>
+                            <h1 class="text-4xl tracking-tight text-center max-sm:text-[2rem]">
+                                Book Your Train Tickets
+                                <br /> With Ease on <span class="text-green-500">Ticketer</span>
                             </h1>
                             <p class="mt-2 text-xl text-center max-sm:text-[14px] max-sm:px-12">
                                 Booking is as easy as it can get on Ticketer,
@@ -198,8 +196,6 @@ const searchTrips = () => {
                         </div>
                         <form @submit.prevent="searchTrips"
                             class="flex relative flex-wrap justify-center py-1 px-1 mt-4 rounded-md md:justify-start  bottom-[3.5rem] max-sm:bottom-[2.5rem]">
-                            <!-- class="py-1 px-2 w-full rounded-md border-green-200 focus:border-none focus:ring-0 bg-yellow-50/50 h-[1.7rem] focus:outline-green-500" -->
-
                             <label for="source"></label>
                             <select
                                 class="w-28 h-14 text-center bg-yellow-50 rounded-l-2xl border-none appearance-none focus:ring-0 focus:outline-none text-[1rem] text-slate-900 xl:w-[180px]"
@@ -231,20 +227,10 @@ const searchTrips = () => {
                                 class="py-1 px-3 w-28 bg-green-500 rounded-r-2xl duration-300 hover:text-white hover:bg-green-700 active:bg-green-900 animate-all max-sm:rounded-xl text-slate-800">
                                 Find Trip
                             </button>
-
-                            <!-- <Link -->
-                            <!--     class="py-1 px-3 w-28 bg-green-500 rounded-r-2xl duration-300 hover:text-white hover:bg-green-700 active:bg-green-900 animate-all max-sm:rounded-xl text-slate-800" -->
-                            <!--     as="button" :href="route('trips.search')" :data="form.value" method="post"> -->
-                            <!-- Find Trip -->
-                            <!-- </Link> -->
                         </form>
                     </div>
                 </div>
             </div>
-            <!-- source: form.source, -->
-            <!--                                     destination: form.destination, -->
-            <!--                                     date: form.date, -->
-
             <div class="mt-12 h-auto bg-yellow-50/20 max-sm:mt-28">
                 <p class="mb-2 text-left text-[20px]">Our Destinations</p>
                 <div class="">
@@ -303,9 +289,9 @@ const searchTrips = () => {
                 </div>
                 <div class="py-8 mt-8 min-h-auto bg-green-50/20">
                     <h4 class="mb-2 text-left text-[20px]">Next Trips</h4>
-                    <div class="flex overflow-auto gap-6 justify-center py-8 pl-20">
+                    <div class=" flex overflow-auto gap-6 justify-center py-8 max-sm:pl-80 pl-20">
                         <div v-for="trip in trips" :key="trip.id"
-                            class="mt-2 rounded-lg shadow-2xl bg-yellow-50/50 h-[13.5rem] w-[20rem]">
+                            class=" mt-2 rounded-lg shadow-2xl bg-yellow-50/50 h-[13.5rem] w-[20rem] ">
                             <div class="flex justify-center w-[20rem]">
                                 <div class="w-[50%] h-[65%]">
                                     <img :src="trip.source_image" alt="Source station"
@@ -340,7 +326,7 @@ const searchTrips = () => {
                     <div class="lg:w-[30%] mt-4 md: md:w-[30%] m-auto rounded-xl">
                         <div class="rounded-xl h-[33rem] w-[16rem]">
                             <video class="w-full rounded-xl" type="video/mp4" :src="'/storage/home-images/train-vid.mp4'"
-                                alt="Train Interior" autoplay loop muted></video>
+                                alt="Train Interior" autoplay loop muted loading="lazy"></video>
                         </div>
                     </div>
 
@@ -360,7 +346,6 @@ const searchTrips = () => {
                                     <h3 class="px-2 text-[1.0rem]">
                                         {{ review.user.name }}
                                     </h3>
-                                    <!-- <h5 class="px-2 text-[1.0rem]">Software Engineer</h5> -->
                                 </div>
                             </div>
                         </div>
@@ -427,22 +412,6 @@ const searchTrips = () => {
                             </div>
                         </div>
                     </div>
-
-                    <!-- <div class="py-16 bg-green-50/20"> -->
-                    <!--     <h3 class="text-2xl font-semibold text-center">Partners</h3> -->
-                    <!--     <div class="grid justify-center my-8"> -->
-                    <!--         <div class="my-4 mx-8 w-44 h-24 bg-green-300"></div> -->
-                    <!--         <div class="my-4 mx-8 w-44 h-24 bg-green-300"></div> -->
-                    <!--         <div class="my-4 mx-8 w-44 h-24 bg-green-300"></div> -->
-                    <!--         <div class="my-4 mx-8 w-44 h-24 bg-green-300"></div> -->
-                    <!--         <div class="my-4 mx-8 w-44 h-24 bg-green-300"></div> -->
-                    <!--         <div class="my-4 mx-8 w-44 h-24 bg-green-300"></div> -->
-                    <!--         <div class="my-4 mx-8 w-44 h-24 bg-green-300"></div> -->
-                    <!--         <div class="my-4 mx-8 w-44 h-24 bg-green-300"></div> -->
-                    <!--         <div class="my-4 mx-8 w-44 h-24 bg-green-300"></div> -->
-                    <!--         <div class="my-4 mx-8 w-44 h-24 bg-green-300"></div> -->
-                    <!--     </div> -->
-                    <!-- </div> -->
                 </div>
             </div>
         </div>
