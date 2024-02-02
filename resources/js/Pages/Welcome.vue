@@ -334,9 +334,8 @@ const searchTrips = () => {
                 <div class="flex overflow-y-scroll flex-wrap justify-between">
                     <div class="lg:w-[30%] mt-4 md: md:w-[30%] m-auto rounded-xl">
                         <div class="rounded-xl h-[33rem] w-[16rem]">
-                            <video class="w-full rounded-xl">
-                                <source :src="'/storage/home-images/train-vid.mp4'" type="video/mp4" alt="Train Interior"
-                                    autoplay loop muted loading="lazy" />
+                            <video class="w-full rounded-xl" :src="'/storage/home-images/train-vid.mp4'"
+                                alt="Train Interior" autoplay loop muted loading="lazy">
                                 <track :src="'/storage/home-images/train-vid.mp4'" kind="Interior view of the train" />
                             </video>
                         </div>
