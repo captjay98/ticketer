@@ -1,7 +1,7 @@
 FROM php:8.2-apache
 
 RUN apt-get update && \
-    apt-get install -y git libzip-dev unzip nodejs npm libpq-dev && \
+    apt-get install -y git libzip-dev unzip nodejs npm libpq-dev php8.2-gd && \
     rm -rf /var/lib/apt/lists/*
 
 RUN docker-php-ext-install pdo pdo_pgsql pgsql zip exif pcntl
