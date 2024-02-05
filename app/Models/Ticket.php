@@ -12,13 +12,14 @@ class Ticket extends Model
 {
     use HasFactory;
     protected $fillable = [
-      'user_id',
-      'seat_id',
-      'ticket_type_id',
-      'trip_id',
-      'serial_number',
-      'expires_at',
-      ];
+        'user_id',
+        'seat_id',
+        'ticket_type_id',
+        'trip_id',
+        'qr_code',
+        'serial_number',
+        'expires_at',
+    ];
 
 
     protected static function boot()
@@ -49,6 +50,4 @@ class Ticket extends Model
     {
         return $this->belongsTo(Trip::class);
     }
-
-
 }

@@ -1,13 +1,14 @@
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
+import { Head } from "@inertiajs/vue3";
+
 const { ticket } = defineProps({
     ticket: Object,
-
 });
-console.log(ticket);
 </script>
 
 <template>
+    <Head title="Ticket" />
     <AuthenticatedLayout>
         <div class="flex flex-col justify-center items-center h-screen bg-yellow-50/50">
             <div class="py-4 px-2 mx-2 bg-white rounded-lg shadow-lg h-[24rem] w-[24rem]">
@@ -81,7 +82,7 @@ console.log(ticket);
 
                     <div class="flex flex-col justify-between items-center w-1/3">
                         <!-- Placeholder for QR code -->
-                        <div class="bg-gray-300 rounded-md w-[5rem] h-[5rem]"></div>
+                        <div class="bg-gray-300 rounded-md w-[5rem] h-[5rem]"><img :src="ticket.qr_code"></div>
 
                         <div class="mt-4 text-lg font-bold">INSTRUCTIONS</div>
                         <ol>
