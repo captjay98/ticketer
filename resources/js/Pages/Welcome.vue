@@ -7,7 +7,6 @@ const { trips } = defineProps({
     trips: Object
 });
 
-console.log("Trips", trips);
 
 const form = useForm({
     source: "",
@@ -160,10 +159,10 @@ const searchTrips = () => {
                             </p>
                         </div>
                         <form @submit.prevent="searchTrips"
-                            class="flex relative flex-wrap justify-center py-1 px-1 mt-4 rounded-md md:justify-start bottom-[3.5rem] max-sm:bottom-[1.8rem]">
+                            class="flex relative flex-wrap justify-center py-1 px-1 mt-4 rounded-md md:justify-start bottom-[3.4rem] max-sm:bottom-[2.7rem]">
                             <label for="source" class="sr-only">Source</label>
                             <select
-                                class="w-[7.5rem] h-14 text-center bg-yellow-50 rounded-l-2xl border-none appearance-none focus:ring-0 focus:outline-none max-sm:text-[0.85rem] text-slate-900 xl:w-[180px]"
+                                class="w-[7.5rem] h-14 text-center bg-yellow-50  border-none focus:ring-0 focus:outline-none max-md:text-[0.85rem] text-slate-900 xl:w-[180px] rounded-l-2xl"
                                 required name="source" id="source" v-model="form.source">
                                 <option value="" disabled selected>
                                     Source
@@ -175,7 +174,7 @@ const searchTrips = () => {
 
                             <label for="destination" class="sr-only">Destination</label>
                             <select
-                                class="w-[7.5rem] h-14 text-center bg-yellow-50 border-none focus:ring-0 focus:outline-none max-sm:text-[0.85rem] text-slate-900 xl:w-[180px]"
+                                class="w-[7.5rem] h-14 text-center bg-yellow-50 border-none focus:ring-0 focus:outline-none max-md:text-[0.85rem]   text-slate-900 xl:w-[180px]"
                                 required name="destination" id="destination" v-model="form.destination">
                                 <option value="" disabled selected>
                                     Destination
@@ -186,7 +185,7 @@ const searchTrips = () => {
                                 </option>
                             </select>
                             <input
-                                class="w-[7.5rem] h-14 text-center bg-yellow-50 border-none focus:outline-none max-sm:text-[0.85rem] max-sm:rounded-r-2xl text-slate-900 xl:w-[180px] focus:ring-none"
+                                class="w-[7.5rem] h-14 text-center bg-yellow-50 border-none focus:outline-none max-md:text-[0.85rem]  max-sm:rounded-r-2xl text-slate-900 xl:w-[180px] focus:ring-none"
                                 disabled type="date" :v-model="form.date" id="date" placeholder="date" />
                             <button
                                 class="py-2 px-4 w-28 bg-green-500 rounded-r-2xl shadow-2xl duration-300 hover:text-white hover:bg-green-700 active:bg-green-900 shadow-green-500 max-sm:mt-2 animate-all max-sm:rounded-xl text-slate-800">
