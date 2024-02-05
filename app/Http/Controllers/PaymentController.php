@@ -26,12 +26,12 @@ class PaymentController extends Controller
         $seat_id =  Session::get('seat_id');
         $seat_class =  Session::get('coach_class');
 
-        $tickettype = $this->getTicketType($trip_id, $seat_class);
-        $paymentDetails = $this->createPaymentDetails($user, $tickettype);
+        $ticket_type = $this->getTicket_Type($trip_id, $seat_class);
+        $paymentDetails = $this->createPaymentDetails($user, $ticket_type);
         $booking = $this->createBooking($user, $seat_id, $trip_id, $paymentDetails['reference']);
 
         Session::put(['booking' => $booking]);
-        Session::put(['tickettype' => $tickettype]);
+        Session::put(['ticket_type' => $ticket_type]);
 
         return $this->getPaymentUrl($paymentDetails);
     }
@@ -59,10 +59,10 @@ class PaymentController extends Controller
         return Session::has($requiredSessionData);
     }
 
-    private function createPaymentDetails($user, $tickettype )
+    private function createPaymentDetails($user, $ticket_type)
     {
         $reference = Paystack::genTranxRef();
-        $amount = $tickettype->price;
+        $amount = $ticket_type->price;
 
         return [
             'first_name' => $user->first_name,
@@ -85,7 +85,7 @@ class PaymentController extends Controller
         ];
     }
 
-    private function getTicketType($trip_id = null, $seat_class = null)
+    private function getTicket_Type($trip_id = null, $seat_class = null)
     {
         return TicketType::where('trip_id', $trip_id)
             ->where('seat_class', $seat_class)->firstOrFail();
@@ -126,7 +126,7 @@ class PaymentController extends Controller
 
     private function onPaymentSuccess($paymentDetails, $booking)
     {
-       $this->recordTransaction($paymentDetails, $booking, 'success');
+        $this->recordTransaction($paymentDetails, $booking, 'success');
 
         $booking->update(['status' => 'succesful']);
 
@@ -138,7 +138,7 @@ class PaymentController extends Controller
 
     private function onPaymentFailure($paymentDetails, $booking)
     {
-       $this->recordTransaction($paymentDetails, $booking, 'failed');
+        $this->recordTransaction($paymentDetails, $booking, 'failed');
 
         $booking->update(['status' => 'failed']);
 
@@ -156,8 +156,8 @@ class PaymentController extends Controller
                 'authorization_code' => $paymentDetails['data']['authorization']['authorization_code'],
                 'status' => $status,
                 'amount' => $paymentDetails['data']['amount'],
-                'currency'=> $paymentDetails['data']['currency'],
-                'metadata'=> json_encode($paymentDetails['data']['metadata']),
+                'currency' => $paymentDetails['data']['currency'],
+                'metadata' => json_encode($paymentDetails['data']['metadata']),
             ]
         );
     }

@@ -22,11 +22,11 @@ class BookingController extends Controller
      * @param string $tickettype
      * @return \Inertia\Response
      */
-    public function getCoaches($trip_id, $tickettype)
+    public function getCoaches($trip_id, $ticket_type)
     {
         // Retrieve the trip with coaches of a specific ticket type
-        $trip = Trip::with(['coaches' => function ($query) use ($tickettype) {
-            $query->where('coach_class', $tickettype);
+        $trip = Trip::with(['coaches' => function ($query) use ($ticket_type) {
+            $query->where('coach_class', $ticket_type);
         }])->find($trip_id);
 
         if ($trip) {
@@ -75,7 +75,6 @@ class BookingController extends Controller
                 ->update(['status' => 'reserved']);
 
             DB::commit();
-
         } catch (\Exception $e) {
             Log::error('Payment Error: ' . $e->getMessage());
             DB::rollBack();

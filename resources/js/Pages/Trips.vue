@@ -93,7 +93,8 @@ const imagePaths = {
                             {{ trip.date }}
                         </p>
                         <p class="font-semibold text-[1.0rem]">
-                            <span class="text-[0.5rem]">starting from </span> NGN{{ trip.ticket_types[0]?.price ?? 4000 }}
+                            <span class="text-[0.5rem]">starting from </span> NGN{{ trip.ticket_types[0]?.price ??
+                                4000 }}
                         </p>
                     </div>
                     </Link>

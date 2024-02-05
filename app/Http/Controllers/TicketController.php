@@ -19,16 +19,16 @@ class TicketController extends Controller
     public function createTicket()
     {
         $booking = Session::get('booking');
-        $tickettype = Session::get('tickettype');
+        $ticket_type = Session::get('ticket_type');
 
         $ticket = Ticket::create(
             [
                 'user_id' => auth()->id(),
                 'seat_id' => $booking->seat->id,
-                'ticket_type' => $tickettype->id,
+                'ticket_type' => $ticket_type->id,
                 'trip_id' => $booking->trip->id,
                 'booking_id' => $booking->id,
-                'ticket_type_id' => $tickettype->id,
+                'ticket_type_id' => $ticket_type->id,
                 'expires_at' => $booking->trip->departure_time,
             ]
         );
@@ -38,7 +38,7 @@ class TicketController extends Controller
                 Ticket Serial Number: {$ticket->serial_number}\n
                 Booking ID: {$booking->id}\n
                 Seat ID: {$ticket->seat->id}\n
-                Ticket Type: {$tickettype->name}\n
+                Ticket Type: {$ticket_type->name}\n
                 Trip: {$booking->trip->title}-{$booking->trip->date}\n
                 Expires: {$booking->trip->departure_time}";
 
@@ -49,7 +49,7 @@ class TicketController extends Controller
         $ticket->update(['qr_code' => $qrCodePath]);
         $booking->update(['ticket_id' => $ticket->id]);
 
-        Session::forget(['booking', 'tickettype', 'trip_id', 'seat_id', 'coach_id', 'coach_class']);
+        Session::forget(['booking', 'ticket_type', 'trip_id', 'seat_id', 'coach_id', 'coach_class']);
         return redirect(route('ticket.show.created'))->with(['ticket_id' => $ticket->id]);
     }
 

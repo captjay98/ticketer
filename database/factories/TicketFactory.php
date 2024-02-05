@@ -20,17 +20,18 @@ class TicketFactory extends Factory
     public function definition(): array
     {
         return [
-             'seat' => $this->faker->numberBetween($int1 = 1, $int2 = 20),
-             'serial_number' => $this->faker->uuid(),
-             'expires_at' => $this->faker->dateTime(),
-             'trip_id' => Trip::inRandomOrder()->id(),
-             'ticket_type' => function ($seat_class, $price) {
-                 return TicketType::Factory()->create(
-                     ['seat_class' => $seat_class,
-                      'price' => $price
-                     ]
-                 )->id;
-             },
-         ];
+            'seat' => $this->faker->numberBetween($int1 = 1, $int2 = 20),
+            'serial_number' => $this->faker->uuid(),
+            'expires_at' => $this->faker->dateTime(),
+            'trip_id' => Trip::inRandomOrder()->id(),
+            'ticket_type_id' => function ($seat_class, $price) {
+                return TicketType::Factory()->create(
+                    [
+                        'seat_class' => $seat_class,
+                        'price' => $price
+                    ]
+                )->id;
+            },
+        ];
     }
 }
