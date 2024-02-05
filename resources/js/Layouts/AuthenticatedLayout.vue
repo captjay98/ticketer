@@ -5,7 +5,7 @@ import PageFooter from "@/Components/PageFooter.vue";
 const links = [
     { name: "Home", path: "/", url: "" },
     { name: "Trips", path: "/trips", url: "" },
-    { name: "Account", path: "/dashboard", url: "" },
+    { name: "Account", path: "/profile", url: "" },
 ];
 </script>
 

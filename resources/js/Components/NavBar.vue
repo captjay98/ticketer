@@ -6,7 +6,7 @@ import { ref } from "vue";
 defineProps({
     links: Array,
 });
-// console.log("NAVBAR LINKS!!!".links);
+
 const customer = "customer";
 const admin = "admin";
 
@@ -39,11 +39,12 @@ const drop = ref(false);
     </nav>
     <div class="flex space-x-5 md:hidden">
         <button class="absolute right-10" @click="drop = !drop">
-            <img class="py-1 px-1 w-8 h-8" :src="'/storage/icons/hamburger.png'" alt="hamburger" />
+            <img class="py-1 px-1 w-8 h-8" :src="'/storage/icons/hamburger.svg'" alt="hamburger" />
         </button>
 
-        <nav v-show="drop" class="absolute right-3 top-12 z-10 bg-green-500 transition-all ease-in duration-400">
-            <div class="py-4 px-4 tracking-wider text-yellow-200 bg-green-500 rounded-md">
+        <nav v-show="drop"
+            class="absolute right-3 top-12 z-10 bg-green-500/100 text-slate-800 rounded-md transition-all ease-in duration-400">
+            <div class="py-4 px-4 tracking-wider   rounded-md">
                 <ul :key="link.name" v-for="link in links" class="py-2 px-2 text-left">
                     <li>
                         <Link :href="link.path">{{ link.name }}</Link>

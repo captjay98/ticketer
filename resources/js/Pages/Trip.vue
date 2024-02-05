@@ -1,6 +1,7 @@
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import Tickettypes from "./Tickettypes.vue";
+import { Head } from "@inertiajs/vue3";
 
 const imagePaths = {
     KD_ABJ: {
@@ -59,72 +60,47 @@ const { trip } = defineProps({
 </script>
 
 <template>
+    <Head title="Select Ticket Type" />
     <AuthenticatedLayout>
-        <div
-            class="flex flex-col justify-center w-screen h-screen max-sm:mt-20"
-        >
+        <div class="flex flex-col justify-center w-screen h-screen max-sm:mt-20">
             <h1 class="mt-24 mb-6 text-2xl text-center">Select a Ticket</h1>
-            <div
-                class="flex overflow-auto flex-col gap-6 justify-center items-center py-"
-            >
+            <div class="flex overflow-auto flex-col gap-6 justify-center items-center py-">
                 <Tickettypes :trip="trip" />
-                <div
-                    class="mt-2 rounded-xl shadow-2xl bg-yellow-50/50 h-[17.0rem] w-[20rem]"
-                >
+                <div class="mt-2 rounded-xl shadow-2xl bg-yellow-50/50 h-[17.0rem] w-[20rem]">
                     <div class="flex justify-center w-[20rem]">
                         <div class="w-[50%] h-[65%]">
-                            <img
-                                :src="imagePaths[trip.title].source_image"
-                                alt=""
-                                class="rounded-tl-xl h-[8rem] w-[10rem]"
-                            />
+                            <img :src="imagePaths[trip.title].source_image" alt=""
+                                class="rounded-tl-xl h-[8rem] w-[10rem]" />
 
-                            <p
-                                class="font-medium text-center py-[0.3rem] text-[0.9rem]"
-                            >
+                            <p class="font-medium text-center py-[0.3rem] text-[0.9rem]">
                                 {{ trip.source }}
                             </p>
                         </div>
                         <div class="w-[50%] h-[65%] rounded-lg">
-                            <img
-                                :src="imagePaths[trip.title].destination_image"
-                                alt=""
-                                class="rounded-tr-xl h-[8rem] w-[10rem]"
-                            />
-                            <p
-                                class="font-medium text-center py-[0.3rem] text-[0.9rem]"
-                            >
+                            <img :src="imagePaths[trip.title].destination_image" alt=""
+                                class="rounded-tr-xl h-[8rem] w-[10rem]" />
+                            <p class="font-medium text-center py-[0.3rem] text-[0.9rem]">
                                 {{ trip.destination }}
                             </p>
                         </div>
                     </div>
-                    <div
-                        class="grid grid-cols-2 gap-1 justify-center items-center px-3 mt-3 text-center"
-                    >
-                        <p
-                            class="flex flex-col mb-1 font-semibold text-[0.8rem]"
-                        >
+                    <div class="grid grid-cols-2 gap-1 justify-center items-center px-3 mt-3 text-center">
+                        <p class="flex flex-col mb-1 font-semibold text-[0.8rem]">
                             Date:<span class="text-[0.9rem]">{{
                                 trip.date
                             }}</span>
                         </p>
-                        <p
-                            class="flex flex-col mb-1 font-semibold text-[0.8rem]"
-                        >
+                        <p class="flex flex-col mb-1 font-semibold text-[0.8rem]">
                             Seats Available:<span class="text-[0.9rem]">{{
                                 trip.seats
                             }}</span>
                         </p>
-                        <p
-                            class="flex flex-col mb-1 font-semibold text-[0.8rem]"
-                        >
+                        <p class="flex flex-col mb-1 font-semibold text-[0.8rem]">
                             Departure:<span class="text-[0.9rem]">{{
                                 trip.departure_time
                             }}</span>
                         </p>
-                        <p
-                            class="flex flex-col mb-1 font-semibold text-[0.8rem]"
-                        >
+                        <p class="flex flex-col mb-1 font-semibold text-[0.8rem]">
                             Arrival:<span class="text-[0.9rem]">{{
                                 trip.arrival_time
                             }}</span>
