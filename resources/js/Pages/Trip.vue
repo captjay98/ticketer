@@ -1,7 +1,12 @@
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import Tickettypes from "./Tickettypes.vue";
+import TicketTypes from "./TicketTypes.vue";
 import { Head } from "@inertiajs/vue3";
+
+const { trip } = defineProps({
+    trip: Object,
+});
+
 
 const imagePaths = {
     KD_ABJ: {
@@ -52,11 +57,8 @@ const imagePaths = {
         source_image: "/storage/home-images/lagos.webp",
         destination_image: "/storage/home-images/warri.webp",
     },
-}; // "imagePaths.KD_ABJ.source_image"
-// "imagePaths.KD_ABJ.destination_image"
-const { trip } = defineProps({
-    trip: Object,
-});
+};
+
 </script>
 
 <template>
@@ -65,7 +67,7 @@ const { trip } = defineProps({
         <div class="flex flex-col justify-center w-screen h-screen max-sm:mt-20">
             <h1 class="mt-24 mb-6 text-2xl text-center">Select a Ticket</h1>
             <div class="flex overflow-auto flex-col gap-6 justify-center items-center py-">
-                <Tickettypes :trip="trip" />
+                <TicketTypes :trip="trip" />
                 <div class="mt-2 rounded-xl shadow-2xl bg-yellow-50/50 h-[17.0rem] w-[20rem]">
                     <div class="flex justify-center w-[20rem]">
                         <div class="w-[50%] h-[65%]">
@@ -105,8 +107,6 @@ const { trip } = defineProps({
                                 trip.arrival_time
                             }}</span>
                         </p>
-                        <!-- 'title', 'source', 'destination', 'seats', 'date', 'departure_time', -->
-                        <!-- 'arrival_time', -->
                     </div>
                 </div>
             </div>
