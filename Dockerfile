@@ -15,11 +15,11 @@ WORKDIR /var/www/html/ticketer
 RUN chown -R www-data:www-data /var/www/html/
 COPY --chown=www-data:www-data . .
 
-RUN composer install --no-interaction --optimize-autoloader && composer clear-cache
+RUN composer install --no-interaction --optimize-autoloader --no-dev && composer clear-cache
 RUN npm install && npm run build && npm cache clean --force
 RUN composer dump-autoload --optimize
-RUN php artisan config:clear && php artisan route:clear && php artisan cache:clear
-RUN php artisan config:cache && php artisan route:cache
+
+RUN php artisan cache:clear && php artisan route:cache
 RUN chown -R www-data:www-data /var/www/html/ \
     && ln -s /var/www/html/ticketer/storage/app/public  /var/www/html/ticketer/public/storage \
     && chown -R www-data:www-data /var/www/html/ticketer/public/storage \
