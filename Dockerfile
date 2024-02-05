@@ -6,7 +6,7 @@ RUN apt-get update && \
     && pecl install  imagick && \
     rm -rf /var/lib/apt/lists/*
 
-RUN docker-php-ext-install pdo pdo_pgsql pgsql zip exif pcntl gd \
+RUN docker-php-ext-install pdo pdo_pgsql pgsql zip exif pcntl gd && \
     docker-php-ext-enable imagick;
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
