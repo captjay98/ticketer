@@ -2,7 +2,7 @@ FROM php:8.2-apache
 
 RUN apt-get update && \
     apt-get install -y git libzip-dev libpng-dev libwebp-dev freetype-dev libpq-dev libjpeg-turbo-dev \
-    unzip nodejs npm \
+    unzip nodejs npm  && \
     rm -rf /var/lib/apt/lists/*
 
 
