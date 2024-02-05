@@ -1,6 +1,6 @@
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import { Link } from "@inertiajs/vue3";
+import { Link, Head } from "@inertiajs/vue3";
 
 const { trips } = defineProps({
     trips: Object,
@@ -58,6 +58,7 @@ const imagePaths = {
 };
 </script>
 <template>
+    <Head title="Trips" />
     <AuthenticatedLayout>
         <div class="overflow-y-scroll w-screen min-h-screen">
             <h1 class="mt-20 text-2xl font-semibold text-center">Trips</h1>
@@ -92,7 +93,7 @@ const imagePaths = {
                             {{ trip.date }}
                         </p>
                         <p class="font-semibold text-[1.0rem]">
-                            NGN{{ trip.price }}
+                            <span class="text-[0.5rem]">starting from </span> NGN{{ trip.ticket_types[0]?.price ?? 4000 }}
                         </p>
                     </div>
                     </Link>
@@ -101,3 +102,77 @@ const imagePaths = {
         </div>
     </AuthenticatedLayout>
 </template>
+
+
+<!-- const tripsToShow = [
+    {
+        source: "Abuja",
+        destination: "Kaduna",
+        price: 4000,
+        date: "12-12-23",
+        source_image: "/storage/home-images/fct.webp",
+        destination_image: "/storage/home-images/kaduna.webp",
+    },
+
+    {
+        source: "Lagos",
+        destination: "Ibadan",
+        price: 4000,
+        date: "24-12-23",
+        source_image: "/storage/home-images/lagos.webp",
+        destination_image: "/storage/home-images/ibadan.webp",
+    },
+
+    {
+        source: "Kano",
+        destination: "Kaduna",
+        price: 6000,
+        date: "10-10-24",
+        source_image: "/storage/home-images/kano.webp",
+        destination_image: "/storage/home-images/kaduna.webp",
+    },
+
+    {
+        source: "Ibadan",
+        destination: "Warri",
+        price: 3000,
+        date: "23-03-2024",
+        source_image: "/storage/home-images/ibadan.webp",
+        destination_image: "/storage/home-images/warri.webp",
+    },
+
+    {
+        source: "Kano",
+        destination: "Lagos",
+        price: 17000,
+        date: "13-02-24",
+        source_image: "/storage/home-images/kano.webp",
+        destination_image: "/storage/home-images/lagos.webp",
+    },
+
+    {
+        source: "Kaduna",
+        destination: "Abuja",
+        price: 4000,
+        date: "29-12-2023",
+        source_image: "/storage/home-images/kaduna.webp",
+        destination_image: "/storage/home-images/fct.webp",
+    },
+
+    {
+        source: "Warri",
+        destination: "Lagos",
+        price: 4000,
+        date: "30-30-2024",
+        source_image: "/storage/home-images/warri.webp",
+        destination_image: "/storage/home-images/lagos.webp",
+    },
+    {
+        source: "Abuja",
+        destination: "Kano",
+        price: 6000,
+        date: "15-05-2024",
+        source_image: "/storage/home-images/fct.webp",
+        destination_image: "/storage/home-images/kano.webp",
+    },
+]; -->

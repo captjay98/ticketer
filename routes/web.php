@@ -6,9 +6,11 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\TripController;
+use App\Models\TicketType;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Models\Trip;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +26,7 @@ use Inertia\Inertia;
 Route::get(
     '/',
     function () {
+        $trips = cache()->remember('trips', now()->startOfDay()->diffInMinutes(), fn () => Trip::where('date', '>', now())->orderBy('date')->take(10)->with('ticketTypes')->get());
         return Inertia::render(
             'Welcome',
             [
@@ -31,6 +34,7 @@ Route::get(
                 'canRegister' => Route::has('register'),
                 'laravelVersion' => Application::VERSION,
                 'phpVersion' => PHP_VERSION,
+                'trips' =>  $trips,
             ]
         );
     }

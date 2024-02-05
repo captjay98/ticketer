@@ -3,28 +3,11 @@ import { Head, Link, useForm, usePage } from "@inertiajs/vue3";
 import PageHeader from "@/Components/PageHeader.vue";
 import PageFooter from "@/Components/PageFooter.vue";
 
-defineProps({
-    canLogin: {
-        type: Boolean,
-    },
-    canRegister: {
-        type: Boolean,
-    },
-    laravelVersion: {
-        type: String,
-
-        required: true,
-    },
-    phpVersion: {
-        type: String,
-        required: true,
-    },
-    // user: {
-    //     type: Array,
-    // },
+const { trips } = defineProps({
+    trips: Object
 });
-const user = usePage().props.auth.user;
-console.log("USER", user);
+
+console.log("Trips", trips);
 
 const form = useForm({
     source: "",
@@ -52,78 +35,57 @@ const destinations = ["Abuja", "Kaduna", "Kano", "Lagos", "Warri", "Ibadan"];
 //     { name: "Warri Station", path: "/storage/home-images/warri-sta.webp" },
 // ];
 
-const trips = [
-    {
-        source: "Abuja",
-        destination: "Kaduna",
-        price: 4000,
-        date: "12-12-23",
-        source_image: "/storage/home-images/fct.webp",
-        destination_image: "/storage/home-images/kaduna.webp",
-    },
-
-    {
-        source: "Lagos",
-        destination: "Ibadan",
-        price: 4000,
-        date: "24-12-23",
-        source_image: "/storage/home-images/lagos.webp",
-        destination_image: "/storage/home-images/ibadan.webp",
-    },
-
-    {
-        source: "Kano",
-        destination: "Kaduna",
-        price: 6000,
-        date: "10-10-24",
-        source_image: "/storage/home-images/kano.webp",
-        destination_image: "/storage/home-images/kaduna.webp",
-    },
-
-    {
-        source: "Ibadan",
-        destination: "Warri",
-        price: 3000,
-        date: "23-03-2024",
-        source_image: "/storage/home-images/ibadan.webp",
-        destination_image: "/storage/home-images/warri.webp",
-    },
-
-    {
-        source: "Kano",
-        destination: "Lagos",
-        price: 17000,
-        date: "13-02-24",
-        source_image: "/storage/home-images/kano.webp",
-        destination_image: "/storage/home-images/lagos.webp",
-    },
-
-    {
-        source: "Kaduna",
-        destination: "Abuja",
-        price: 4000,
-        date: "29-12-2023",
+const imagePaths = {
+    KD_ABJ: {
         source_image: "/storage/home-images/kaduna.webp",
         destination_image: "/storage/home-images/fct.webp",
     },
-
-    {
-        source: "Warri",
-        destination: "Lagos",
-        price: 4000,
-        date: "30-30-2024",
-        source_image: "/storage/home-images/warri.webp",
+    ABJ_KD: {
+        source_image: "/storage/home-images/fct.webp",
+        destination_image: "/storage/home-images/kaduna.webp",
+    },
+    LAG_IBD: {
+        source_image: "/storage/home-images/lagos.webp",
+        destination_image: "/storage/home-images/ibadan.webp",
+    },
+    IBD_LAG: {
+        source_image: "/storage/home-images/ibadan.webp",
         destination_image: "/storage/home-images/lagos.webp",
     },
-    {
-        source: "Abuja",
-        destination: "Kano",
-        price: 6000,
-        date: "15-05-2024",
+    WAR_IBD: {
+        source_image: "/storage/home-images/warri.webp",
+        destination_image: "/storage/home-images/ibadan.webp",
+    },
+    IBD_WAR: {
+        source_image: "/storage/home-images/ibadan.webp",
+        destination_image: "/storage/home-images/warri.webp",
+    },
+    KN_KD: {
+        source_image: "/storage/home-images/kano.webp",
+        destination_image: "/storage/home-images/kaduna.webp",
+    },
+    KD_KN: {
+        source_image: "/storage/home-images/kaduna.webp",
+        destination_image: "/storage/home-images/kano.webp",
+    },
+    ABJ_KN: {
         source_image: "/storage/home-images/fct.webp",
         destination_image: "/storage/home-images/kano.webp",
     },
-];
+    KN_ABJ: {
+        source_image: "/storage/home-images/kano.webp",
+        destination_image: "/storage/home-images/fct.webp",
+    },
+    WAR_LAG: {
+        source_image: "/storage/home-images/warri.webp",
+        destination_image: "/storage/home-images/lagos.webp",
+    },
+    LAG_WAR: {
+        source_image: "/storage/home-images/lagos.webp",
+        destination_image: "/storage/home-images/warri.webp",
+    },
+};
+
 
 const reviews = [
     {
@@ -201,7 +163,7 @@ const searchTrips = () => {
                             class="flex relative flex-wrap justify-center py-1 px-1 mt-4 rounded-md md:justify-start bottom-[3.5rem] max-sm:bottom-[1.8rem]">
                             <label for="source" class="sr-only">Source</label>
                             <select
-                                class="w-28 h-14 text-center bg-yellow-50 rounded-l-2xl border-none appearance-none focus:ring-0 focus:outline-none max-sm:text-[0.7rem] text-slate-900 xl:w-[180px]"
+                                class="w-[7.5rem] h-14 text-center bg-yellow-50 rounded-l-2xl border-none appearance-none focus:ring-0 focus:outline-none max-sm:text-[0.85rem] text-slate-900 xl:w-[180px]"
                                 required name="source" id="source" v-model="form.source">
                                 <option value="" disabled selected>
                                     Source
@@ -213,7 +175,7 @@ const searchTrips = () => {
 
                             <label for="destination" class="sr-only">Destination</label>
                             <select
-                                class="w-28 h-14 text-center bg-yellow-50 border-none focus:ring-0 focus:outline-none max-sm:text-[0.7rem] text-slate-900 xl:w-[180px]"
+                                class="w-[7.5rem] h-14 text-center bg-yellow-50 border-none focus:ring-0 focus:outline-none max-sm:text-[0.85rem] text-slate-900 xl:w-[180px]"
                                 required name="destination" id="destination" v-model="form.destination">
                                 <option value="" disabled selected>
                                     Destination
@@ -224,7 +186,7 @@ const searchTrips = () => {
                                 </option>
                             </select>
                             <input
-                                class="w-28 h-14 text-center bg-yellow-50 border-none focus:outline-none max-sm:text-[0.7rem] max-sm:rounded-r-2xl text-slate-900 xl:w-[180px] focus:ring-none"
+                                class="w-[7.5rem] h-14 text-center bg-yellow-50 border-none focus:outline-none max-sm:text-[0.85rem] max-sm:rounded-r-2xl text-slate-900 xl:w-[180px] focus:ring-none"
                                 disabled type="date" :v-model="form.date" id="date" placeholder="date" />
                             <button
                                 class="py-2 px-4 w-28 bg-green-500 rounded-r-2xl shadow-2xl duration-300 hover:text-white hover:bg-green-700 active:bg-green-900 shadow-green-500 max-sm:mt-2 animate-all max-sm:rounded-xl text-slate-800">
@@ -298,12 +260,13 @@ const searchTrips = () => {
                     <h2 class="mb-2 font-medium text-left text-[1.5rem]">
                         Next Trips
                     </h2>
-                    <div class="flex overflow-auto gap-6 justify-center py-8 pl-20 max-sm:pl-80" tab-index="0">
+                    <div class="flex overflow-x-auto  py-8 ">
                         <div v-for="trip in trips" :key="trip.id"
-                            class="mt-2 rounded-lg shadow-2xl bg-yellow-50/50 h-[13.5rem] w-[20rem]">
+                            class="mt-2 mx-5 rounded-lg shadow-2xl bg-yellow-50/50 h-[13.5rem] w-[20rem]">
+                            <Link :href="route('trips.one', trip.id)">
                             <div class="flex justify-center w-[20rem]">
                                 <div class="w-[50%] h-[65%]">
-                                    <img :src="trip.source_image" alt="Source station" loading="lazy"
+                                    <img :src="imagePaths[trip.title].source_image" alt="Source station" loading="lazy"
                                         class="rounded-tl-lg h-[8rem] w-[10rem]" />
 
                                     <p class="font-medium text-center py-[0.3rem] text-[0.9rem]">
@@ -311,8 +274,8 @@ const searchTrips = () => {
                                     </p>
                                 </div>
                                 <div class="w-[50%] h-[65%] rounded-lg">
-                                    <img :src="trip.destination_image" alt="Destination station" loading="lazy"
-                                        class="rounded-tr-lg h-[8rem] w-[10rem]" />
+                                    <img :src="imagePaths[trip.title].destination_image" alt="Destination station"
+                                        loading="lazy" class="rounded-tr-lg h-[8rem] w-[10rem]" />
                                     <p class="font-medium text-center py-[0.3rem] text-[0.9rem]">
                                         {{ trip.destination }}
                                     </p>
@@ -323,9 +286,11 @@ const searchTrips = () => {
                                     {{ trip.date }}
                                 </p>
                                 <p class="font-semibold text-[1.0rem]">
-                                    NGN{{ trip.price }}
+                                    <span class="text-[0.5rem]">starting from </span> NGN{{ trip.ticket_types[0]?.price ??
+                                        4000 }}
                                 </p>
                             </div>
+                            </Link>
                         </div>
                     </div>
                 </div>

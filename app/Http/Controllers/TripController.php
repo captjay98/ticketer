@@ -14,16 +14,24 @@ class TripController extends Controller
      */
     public function index()
     {
-        $trips = Trip::all();
+        $trips = cache()->remember('trips', now()->startOfDay()->diffInMinutes(), fn () => Trip::where('date', '>=', now())->with('tickettypes')->get());
         return Inertia::render('Trips', ['trips' => $trips]);
     }
 
     public function searchIndex(Request $request)
     {
-        $source = $request->only('source');
-        $destination = $request->only('destination');
-        $filter = [['source' => $source, 'destination' => $destination]];
-        $trips = Trip::where('source', $source)->where('destination', $destination)->with('tickettypes')->get();
+        $source = $request->input('source');
+        $destination = $request->input('destination');
+
+        $cacheKey = "search_trips_{$source}_{$destination}";
+
+        $trips = cache()->remember($cacheKey, now()->startOfDay()->diffInMinutes(), function () use ($source, $destination) {
+            return Trip::where('source', $source)
+                ->where('destination', $destination)
+                ->with('tickettypes')
+                ->get();
+        });
+
         return Inertia::render('Trips', ['trips' => $trips]);
     }
 
@@ -32,9 +40,12 @@ class TripController extends Controller
      */
     public function show($trip_id)
     {
-        $trip = Trip::with('tickettypes')->where('id', $trip_id)->first();
-        return Inertia::render('Trip', ['trip' => $trip,]);
+        $cacheKey = "trip_details_{$trip_id}";
 
-        //
+        $trip = cache()->remember($cacheKey, now()->startOfDay()->diffInMinutes(), function () use ($trip_id) {
+            return Trip::with('tickettypes')->where('id', $trip_id)->first();
+        });
+
+        return Inertia::render('Trip', ['trip' => $trip]);
     }
 }
