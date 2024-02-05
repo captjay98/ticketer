@@ -20,119 +20,119 @@ class TripSeeder extends Seeder
         $trips = [
 
 
-             #KADUNA-ABUJA
-                     [
-                         'title' => 'KD_ABJ',
-                         'source' => 'Kaduna',
-                         'destination' => 'Abuja',
-                         'date' => '2023-12-20',
-                         'departure_time' => '8:30:00',
-                         'arrival_time' => '11:00:00',
-                     ],
-             #ABUJA-KADUNA
-                     [
-                         'title' => 'ABJ_KD',
-                         'source' => 'Abuja',
-                         'destination' => 'Kaduna',
-                         'date' => '2023-12-20',
-                         'departure_time' => '13:30:00',
-                         'arrival_time' => '16:00:00',
-                     ],
-             #Lagos-Ibadan
-                     [
-                         'title' => 'LAG_IBD',
-                         'source' => 'Lagos',
-                         'destination' => 'Ibadan',
-                         'date' => '2023-12-21',
-                         'departure_time' => '10:30:00',
-                         'arrival_time' => '13:00:00',
-                     ],
-             #Ibadan-Lagos
-                     [
-                         'title' => 'IBD_LAG',
-                         'source' => 'Ibadan',
-                         'destination' => 'Lagos',
-                         'date' => '2023-12-21',
-                         'departure_time' => '15:30:00',
-                         'arrival_time' => '18:00:00',
-                     ],
-             #Warri-Ibadan
-                     [
-                         'title' => 'WAR_IBD',
-                         'source' => 'Warri',
-                         'destination' => 'Ibadan',
-                         'date' => '2023-12-21',
-                         'departure_time' => '8:00:00',
-                         'arrival_time' => '10:30:00',
-                     ],
-             #Ibadan-Warri
-                     [
-                         'title' => 'IBD_WAR',
-                         'source' => 'Ibadan',
-                         'destination' => 'Warri',
-                         'date' => '2023-12-21',
-                         'departure_time' => '13:30:00',
-                         'arrival_time' => '16:00:00',
-                     ],
-             #KANO-KADUNA
-                     [
-                         'title' => 'KN_KD',
-                         'source' => 'Kano',
-                         'destination' => 'Kaduna',
-                         'date' => '2023-12-21',
-                         'departure_time' => '8:30:00',
-                         'arrival_time' => '11:00:00',
-                     ],
-             #Kaduna-Kano
-                     [
-                         'title' => 'KD_KN',
-                         'source' => 'Kaduna',
-                         'destination' => 'Kano',
-                         'date' => '2023-12-21',
-                         'departure_time' => '14:00:00',
-                         'arrival_time' => '16:30:00',
-                     ],
-             #Kano-Abj
-                     [
-                         'title' => 'KN_ABJ',
-                         'source' => 'Kano',
-                         'destination' => 'Abuja',
-                         'date' => '2023-12-21',
-                         'departure_time' => '8:30:00',
-                         'arrival_time' => '12:30:00',
-                     ],
-             #Abj-Kano
-                     [
-                         'title' => 'ABJ_KN',
-                         'source' => 'Abuja',
-                         'destination' => 'Kano',
-                         'date' => '2023-12-21',
-                         'departure_time' => '13:30:00',
-                         'arrival_time' => '17:30:00',
-                     ],
-             #Warri-Lagos
-                     [
-                         'title' => 'WAR_LAG',
-                         'source' => 'Warri',
-                         'destination' => 'Lagos',
-                         'date' => '2023-12-21',
-                         'departure_time' => '8:00:00',
-                         'arrival_time' => '12:00:00',
-                     ],
-              #Lagos-Warri
-                     [
-                         'title' => 'LAG_WAR',
-                         'source' => 'Lagos',
-                         'destination' => 'Warri',
-                         'date' => '2023-12-21',
-                         'departure_time' => '13:00:00',
-                         'arrival_time' => '17:00:00',
-                     ],
+            #KADUNA-ABUJA
+            [
+                'title' => 'KD_ABJ',
+                'source' => 'Kaduna',
+                'destination' => 'Abuja',
+                'date' => '2024-06-20',
+                'departure_time' => '8:30:00',
+                'arrival_time' => '11:00:00',
+            ],
+            #ABUJA-KADUNA
+            [
+                'title' => 'ABJ_KD',
+                'source' => 'Abuja',
+                'destination' => 'Kaduna',
+                'date' => '2024-07-20',
+                'departure_time' => '13:30:00',
+                'arrival_time' => '16:00:00',
+            ],
+            #Lagos-Ibadan
+            [
+                'title' => 'LAG_IBD',
+                'source' => 'Lagos',
+                'destination' => 'Ibadan',
+                'date' => '2024-06-21',
+                'departure_time' => '10:30:00',
+                'arrival_time' => '13:00:00',
+            ],
+            #Ibadan-Lagos
+            [
+                'title' => 'IBD_LAG',
+                'source' => 'Ibadan',
+                'destination' => 'Lagos',
+                'date' => '2024-07-21',
+                'departure_time' => '15:30:00',
+                'arrival_time' => '18:00:00',
+            ],
+            #Warri-Ibadan
+            [
+                'title' => 'WAR_IBD',
+                'source' => 'Warri',
+                'destination' => 'Ibadan',
+                'date' => '2024-06-21',
+                'departure_time' => '8:00:00',
+                'arrival_time' => '10:30:00',
+            ],
+            #Ibadan-Warri
+            [
+                'title' => 'IBD_WAR',
+                'source' => 'Ibadan',
+                'destination' => 'Warri',
+                'date' => '2024-07-21',
+                'departure_time' => '13:30:00',
+                'arrival_time' => '16:00:00',
+            ],
+            #KANO-KADUNA
+            [
+                'title' => 'KN_KD',
+                'source' => 'Kano',
+                'destination' => 'Kaduna',
+                'date' => '2024-06-21',
+                'departure_time' => '8:30:00',
+                'arrival_time' => '11:00:00',
+            ],
+            #Kaduna-Kano
+            [
+                'title' => 'KD_KN',
+                'source' => 'Kaduna',
+                'destination' => 'Kano',
+                'date' => '2024-07-21',
+                'departure_time' => '14:00:00',
+                'arrival_time' => '16:30:00',
+            ],
+            #Kano-Abj
+            [
+                'title' => 'KN_ABJ',
+                'source' => 'Kano',
+                'destination' => 'Abuja',
+                'date' => '2024-06-21',
+                'departure_time' => '8:30:00',
+                'arrival_time' => '06:30:00',
+            ],
+            #Abj-Kano
+            [
+                'title' => 'ABJ_KN',
+                'source' => 'Abuja',
+                'destination' => 'Kano',
+                'date' => '2024-07-21',
+                'departure_time' => '13:30:00',
+                'arrival_time' => '17:30:00',
+            ],
+            #Warri-Lagos
+            [
+                'title' => 'WAR_LAG',
+                'source' => 'Warri',
+                'destination' => 'Lagos',
+                'date' => '2024-06-21',
+                'departure_time' => '8:00:00',
+                'arrival_time' => '06:00:00',
+            ],
+            #Lagos-Warri
+            [
+                'title' => 'LAG_WAR',
+                'source' => 'Lagos',
+                'destination' => 'Warri',
+                'date' => '2024-07-21',
+                'departure_time' => '13:00:00',
+                'arrival_time' => '17:00:00',
+            ],
 
-          ];
+        ];
 
         // dd($trips);
-        foreach($trips as $trip) {
+        foreach ($trips as $trip) {
 
             $trip = Trip::Factory()->create($trip);
             $coaches = Coach::all();
@@ -144,7 +144,6 @@ class TripSeeder extends Seeder
 
             event(new TripCreated($trip));
         }
-
     }
 }
 
@@ -155,7 +154,7 @@ class TripSeeder extends Seeder
 //                       'title' => 'KD-ABJ',
 //                       'source' => 'Kaduna',
 //                       'destination' => 'Abuja',
-//                       'date' => '2023-12-20',
+//                       'date' => '2024-06-20',
 //                       'departure_time' => '8:30:00',
 //                       'arrival_time' => '11:00:00',
 //                       'coaches' =>  Coach::inRandomOrder()->id(),
@@ -166,7 +165,7 @@ class TripSeeder extends Seeder
 //                       'title' => 'ABJ-KD',
 //                       'source' => 'Abuja',
 //                       'destination' => 'Kaduna',
-//                       'date' => '2023-12-20',
+//                       'date' => '2024-06-20',
 //                       'departure_time' => '13:30:00',
 //                       'arrival_time' => '16:00:00',
 //                       'coaches' =>  Coach::inRandomOrder()->id(),
@@ -177,7 +176,7 @@ class TripSeeder extends Seeder
 //                       'title' => 'LAG-IBD',
 //                       'source' => 'Lagos',
 //                       'destination' => 'Ibadan',
-//                       'date' => '2023-12-21',
+//                       'date' => '2024-06-21',
 //                       'departure_time' => '10:30:00',
 //                       'arrival_time' => '13:00:00',
 //                       'coaches' =>  Coach::inRandomOrder()->id(),
@@ -188,7 +187,7 @@ class TripSeeder extends Seeder
 //                       'title' => 'IBD-LAG',
 //                       'source' => 'Ibadan',
 //                       'destination' => 'Lagos',
-//                       'date' => '2023-12-21',
+//                       'date' => '2024-06-21',
 //                       'departure_time' => '15:30:00',
 //                       'arrival_time' => '18:00:00',
 //                       'coaches' =>  Coach::inRandomOrder()->id(),
@@ -199,7 +198,7 @@ class TripSeeder extends Seeder
 //                       'title' => 'WAR-IBD',
 //                       'source' => 'Warri',
 //                       'destination' => 'Ibadan',
-//                       'date' => '2023-12-21',
+//                       'date' => '2024-06-21',
 //                       'departure_time' => '8:00:00',
 //                       'arrival_time' => '10:30:00',
 //                       'coaches' =>  Coach::inRandomOrder()->id(),
@@ -210,7 +209,7 @@ class TripSeeder extends Seeder
 //                       'title' => 'IBD-WAR',
 //                       'source' => 'Ibadan',
 //                       'destination' => 'Warri',
-//                       'date' => '2023-12-21',
+//                       'date' => '2024-06-21',
 //                       'departure_time' => '13:30:00',
 //                       'arrival_time' => '16:00:00',
 //                       'coaches' =>  Coach::inRandomOrder()->id(),
@@ -221,7 +220,7 @@ class TripSeeder extends Seeder
 //                       'title' => 'KN-KD',
 //                       'source' => 'Kano',
 //                       'destination' => 'Kaduna',
-//                       'date' => '2023-12-21',
+//                       'date' => '2024-06-21',
 //                       'departure_time' => '8:30:00',
 //                       'arrival_time' => '11:00:00',
 //                       'coaches' =>  Coach::inRandomOrder()->id(),
@@ -232,7 +231,7 @@ class TripSeeder extends Seeder
 //                       'title' => 'KD-KN',
 //                       'source' => 'Kaduna',
 //                       'destination' => 'Kano',
-//                       'date' => '2023-12-21',
+//                       'date' => '2024-06-21',
 //                       'departure_time' => '14:00:00',
 //                       'arrival_time' => '16:30:00',
 //                       'coaches' =>  Coach::inRandomOrder()->id(),
@@ -243,9 +242,9 @@ class TripSeeder extends Seeder
 //                       'title' => 'KANO-ABJ',
 //                       'source' => 'Kano',
 //                       'destination' => 'Abuja',
-//                       'date' => '2023-12-21',
+//                       'date' => '2024-06-21',
 //                       'departure_time' => '8:30:00',
-//                       'arrival_time' => '12:30:00',
+//                       'arrival_time' => '06:30:00',
 //                       'coaches' =>  Coach::inRandomOrder()->id(),
 //                       // 'seats' => '',
 //                   ],
@@ -254,7 +253,7 @@ class TripSeeder extends Seeder
 //                       'title' => 'ABJ-KANO',
 //                       'source' => 'Kano',
 //                       'destination' => 'Abuja',
-//                       'date' => '2023-12-21',
+//                       'date' => '2024-06-21',
 //                       'departure_time' => '13:30:00',
 //                       'arrival_time' => '17:30:00',
 //                       'coaches' =>  Coach::inRandomOrder()->id(),
@@ -265,9 +264,9 @@ class TripSeeder extends Seeder
 //                       'title' => 'WAR-LAG',
 //                       'source' => 'Warri',
 //                       'destination' => 'Lagos',
-//                       'date' => '2023-12-21',
+//                       'date' => '2024-06-21',
 //                       'departure_time' => '8:00:00',
-//                       'arrival_time' => '12:00:00',
+//                       'arrival_time' => '06:00:00',
 //                       'coaches' =>  Coach::inRandomOrder()->id(),
 //                       // 'seats' => '',
 //                   ],
@@ -276,7 +275,7 @@ class TripSeeder extends Seeder
 //                       'title' => 'LAG-WAR',
 //                       'source' => 'Lagos',
 //                       'destination' => 'Warri',
-//                       'date' => '2023-12-21',
+//                       'date' => '2024-06-21',
 //                       'departure_time' => '13:00:00',
 //                       'arrival_time' => '17:00:00',
 //                       'coaches' =>  Coach::inRandomOrder()->id(),
