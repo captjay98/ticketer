@@ -1,10 +1,13 @@
 FROM php:8.2-apache
 
 RUN apt-get update && \
-    apt-get install -y git libzip-dev unzip nodejs npm libpq-dev libpng-dev && \
+    apt-get install -y libzip-dev libmagickwand-dev \
+    libpq-dev libpng-dev unzip nodejs npm git  \
+    && pecl install  imagick && \
     rm -rf /var/lib/apt/lists/*
 
-RUN docker-php-ext-install pdo pdo_pgsql pgsql zip exif pcntl gd
+RUN docker-php-ext-install pdo pdo_pgsql pgsql zip exif pcntl gd \
+    docker-php-ext-enable imagick;
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 
