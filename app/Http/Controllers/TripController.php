@@ -28,6 +28,7 @@ class TripController extends Controller
 
         $trips = Trip::where('source', $source)
             ->where('destination', $destination)
+            ->where('date', '>', now())
             ->with('ticket_types')
             ->get();
 
