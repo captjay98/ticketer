@@ -3,21 +3,18 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import Details from "@/Pages/Traveller/TravellerComponents/Details.vue";
 import PreviousTrips from "@/Pages/Traveller/TravellerComponents/PreviousTrips.vue";
 import Password from "@/Pages/Traveller/TravellerComponents/Password.vue";
-import { Link } from "@inertiajs/vue3";
+import { Link, Head } from "@inertiajs/vue3";
 import Button from "@/Components/Button.vue";
 
 const { user, trips } = defineProps({
     user: Object,
     trips: Object
-    // message: Object,
 });
-// if (message) {
-// console.log("MESSAGE", message.detail);
-// }
+
 </script>
 <template>
+    <Head title="Profile" />
     <AuthenticatedLayout>
-        <!-- <div v-show="message" class="w-screen h-screen bg-blue-400">UPDATE SUCCESFUL</div> -->
         <div class="mt-20 w-[95%] m-auto rounded-md py-2 bg-yellow-50/20">
             <!-- Profile Details -->
             <div class="flex flex-wrap justify-between my-5">

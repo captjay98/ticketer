@@ -2,7 +2,9 @@
 import Button from "@/Components/Button.vue";
 import { useForm } from "@inertiajs/vue3";
 import { computed } from "vue";
+import { useToast } from "vue-toastification";
 
+const toast = useToast()
 const { seeker } = defineProps({
     seeker: Object,
 });
@@ -13,50 +15,48 @@ const form = useForm({
     password_confirmation: "",
 });
 
+
 const updatedFields = computed(() => {
-    const updatedFields = {};
+    const changes = {};
     for (const key in form.value) {
-        if (form.value[key] !== seeker.user[key]) {
-            updatedFields[key] = form.value[key];
+        if (form.value[key] >= 8) {
+            changes[key] = form.value[key];
         }
     }
-    return updatedFields;
+    return changes;
 });
 
+
 const updatePassword = () => {
-    if (!updatedFields.value.isEmpty) {
+    const fieldsToUpdate = updatedFields.value;
+    if (Object.keys(fieldsToUpdate).length == 3) {
         form.put(route("password.update"), {
             ...updatedFields.value,
             preserveScroll: true,
+            onSuccess: () => toast.success("Password Updated"),
         });
+    } else {
+        toast.error("No changes detected");
     }
-    console.log("PASSWORD", updatedFields);
+
 };
+
 </script>
 <template>
-    <div
-        class="flex flex-wrap justify-center py-2 px-2 my-4 w-full rounded-md bg-green-50/30 border-slate-800"
-    >
+    <div class="flex flex-wrap justify-center py-2 px-2 my-4 w-full rounded-md bg-green-50/30 border-slate-800">
         <div class="mt-2 m-auto w-[99%] px-4 py-2 rounded-md">
             <h1 class="py-2 text-xl font-semibold text-center">
                 Password Update
             </h1>
         </div>
 
-        <form
-            class="flex flex-wrap justify-center w-full"
-            @submit.prevent="updatePassword"
-        >
+        <form class="flex flex-wrap justify-center w-full" @submit.prevent="updatePassword">
             <div class="flex flex-wrap justify-center my-4">
                 <div class="my-4 mx-4">
                     <input
                         class="flex font-semibold rounded-md border-green-200 shadow-sm focus:border-none focus:ring-0 bg-yellow-50/30 focus:outline-green-500"
-                        type="text"
-                        id="current_password"
-                        placeholder="Current Password"
-                        v-model="form.current_password"
-                        @input="updatedFields.current_password = true"
-                    />
+                        type="text" id="current_password" placeholder="Current Password" v-model="form.current_password"
+                        @input="updatedFields.current_password = true" />
                     <div v-show="form.errors.current_password">
                         <p class="my-2 w-60 text-sm text-red-500">
                             {{ form.errors.current_password }}
@@ -66,12 +66,8 @@ const updatePassword = () => {
                 <div class="my-4 mx-4">
                     <input
                         class="flex font-semibold rounded-md border-green-200 shadow-sm focus:border-none focus:ring-0 bg-yellow-50/30 focus:outline-green-500"
-                        type="text"
-                        id="password"
-                        placeholder="New Password"
-                        v-model="form.password"
-                        @input="updatedFields.password = true"
-                    />
+                        type="text" id="password" placeholder="New Password" v-model="form.password"
+                        @input="updatedFields.password = true" />
                     <div v-show="form.errors.password">
                         <p class="my-2 w-60 text-sm text-red-500">
                             {{ form.errors.password }}
@@ -81,12 +77,8 @@ const updatePassword = () => {
                 <div class="my-4 mx-4">
                     <input
                         class="flex font-semibold rounded-md border-green-200 shadow-sm focus:border-none focus:ring-0 bg-yellow-50/30 focus:outline-green-500"
-                        type="text"
-                        id="password_confirmation"
-                        placeholder="Confirm Password"
-                        v-model="form.password_confirmation"
-                        @input="updatedFields.password_confirmation = true"
-                    />
+                        type="text" id="password_confirmation" placeholder="Confirm Password"
+                        v-model="form.password_confirmation" @input="updatedFields.password_confirmation = true" />
                     <div v-show="form.errors.password_confirmation">
                         <p class="my-2 w-60 text-sm text-red-500">
                             {{ form.errors.password_confirmation }}
