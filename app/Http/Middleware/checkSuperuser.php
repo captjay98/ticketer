@@ -16,7 +16,7 @@ class checkSuperuser
     public function handle(Request $request, Closure $next): Response
     {
         $user = $request->user();
-        if ($user->is_superuser && $user->accountype == "superuser") {
+        if ($user->is_superuser && $user->account_type == "superuser") {
             return $next($request);
         } else {
             return abort(403, 'Unauthorized');

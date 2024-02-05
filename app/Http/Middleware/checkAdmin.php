@@ -16,7 +16,7 @@ class checkAdmin
     public function handle(Request $request, Closure $next): Response
     {
         $user = $request->user();
-        if ($user->is_admin && $user->accountype  == "staff" || "admin" || "superuser") {
+        if ($user->is_admin  && in_array($user->account_type, ["admin", "superuser"])) {
             return $next($request);
         } else {
             return abort(403, 'Unauthorized, Only an Admin can Perform this action.');
