@@ -14,7 +14,7 @@ class TripController extends Controller
      */
     public function index()
     {
-        $trips = cache()->remember('home_trips', now()->startOfDay()->diffInMinutes(), fn () => Trip::where('date', '>', now())->with('ticket_types')->orderBy('date')->get());
+        $trips = cache()->remember('home_trips', now()->startOfDay()->diffInMinutes(), fn () => Trip::where('date', '>', now())->with('ticketTypes')->orderBy('date')->get());
         return Inertia::render('Trips', ['trips' => $trips]);
     }
 
@@ -29,7 +29,7 @@ class TripController extends Controller
         $trips = Trip::where('source', $source)
             ->where('destination', $destination)
             ->where('date', '>', now())
-            ->with('ticket_types')
+            ->with('ticketTypes')
             ->get();
 
         cache()->forget("trips");
@@ -42,13 +42,11 @@ class TripController extends Controller
      */
     public function show($trip_id)
     {
-        // $cacheKey = "trip_details_{$trip_id}";
+        $cacheKey = "trip_details_{$trip_id}";
 
-        // $trip = cache()->remember($cacheKey, now()->startOfDay()->diffInMinutes(), function () use ($trip_id) {
-        //     return Trip::with('ticket_types')->where('id', $trip_id)->first();
-        // });
-        $trip = Trip::with('ticket_types')->where('id', $trip_id)->first();
-        // dd($trip);
+        $trip = cache()->remember($cacheKey, now()->startOfDay()->diffInMinutes(), function () use ($trip_id) {
+            return Trip::with('ticketTypes')->where('id', $trip_id)->first();
+        });
 
         return Inertia::render('Trip', ['trip' => $trip]);
     }

@@ -23,7 +23,7 @@ class Trip extends Model
         return $this->belongsToMany(Coach::class, 'coach_trips');
     }
 
-    public function ticket_types()
+    public function ticketTypes()
     {
         return $this->HasMany(TicketType::class);
     }

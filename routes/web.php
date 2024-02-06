@@ -26,7 +26,7 @@ use App\Models\Trip;
 Route::get(
     '/',
     function () {
-        $trips = cache()->remember('home_trips', now()->startOfDay()->diffInMinutes(), fn () => Trip::where('date', '>', now())->orderBy('date')->take(10)->with('ticket_types')->get());
+        $trips = cache()->remember('home_trips', now()->startOfDay()->diffInMinutes(), fn () => Trip::where('date', '>', now())->orderBy('date')->take(10)->with('ticketTypes')->get());
         return Inertia::render(
             'Welcome',
             [

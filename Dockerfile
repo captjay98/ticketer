@@ -1,37 +1,24 @@
-FROM php:8.2-apache
+FROM dunglas/frankenphp
 
-RUN apt-get update && \
-    apt-get install -y libzip-dev libmagickwand-dev \
-    libpq-dev libpng-dev unzip nodejs npm git  \
-    && pecl install  imagick && \
-    rm -rf /var/lib/apt/lists/*
 
-RUN docker-php-ext-install pdo pdo_pgsql pgsql zip exif pcntl gd && \
-    docker-php-ext-enable imagick;
+RUN apt-get update apt-get install -y git nodejs npm
+
+RUN install-php-extensions pdo pdo_pgsql pgsql zip exif pcntl gd imagick sockets
+
+WORKDIR /go/src/app/dist/app
+
+COPY . .
+
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-
-WORKDIR /var/www/html/ticketer
-RUN chown -R www-data:www-data /var/www/html/
-COPY --chown=www-data:www-data . .
 
 RUN composer install --no-interaction --optimize-autoloader --no-dev && composer clear-cache
 RUN npm install && npm run build && npm cache clean --force
 RUN composer dump-autoload --optimize
 
 RUN php artisan cache:clear && php artisan route:cache
-RUN chown -R www-data:www-data /var/www/html/ \
-    && ln -s /var/www/html/ticketer/storage/app/public  /var/www/html/ticketer/public/storage \
-    && chown -R www-data:www-data /var/www/html/ticketer/public/storage \
-    && chmod -R 775 /var/www/html
 
-COPY 000-default.conf /etc/apache2/sites-enabled/000-default.conf
-
-
-EXPOSE 8080
-RUN  a2enmod rewrite
-
-CMD ["apache2ctl", "-D", "FOREGROUND"]
+ENTRYPOINT ["php", "artisan", "octane:frankenphp"]
 
 
 
