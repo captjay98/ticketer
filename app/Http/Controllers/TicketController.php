@@ -60,7 +60,7 @@ class TicketController extends Controller
     {
 
         $ticket_id = Session::get('ticket_id');
-        $ticket = Ticket::with('user', 'seat', 'ticket_type', 'trip', 'seat.coach')->where('id', $ticket_id)->first();
+        $ticket = Ticket::with('user', 'seat', 'ticketType', 'trip', 'seat.coach')->where('id', $ticket_id)->first();
         return Inertia::render('Ticket', ['ticket' => $ticket]);
     }
 
@@ -81,7 +81,7 @@ class TicketController extends Controller
      */
     public function showTicket($ticket_id)
     {
-        $ticket = Ticket::with('user', 'seat', 'ticket_type', 'trip', 'seat.coach')->where('id', $ticket_id)->first();
+        $ticket = Ticket::with('user', 'seat', 'ticketType', 'trip', 'seat.coach')->where('id', $ticket_id)->first();
         return Inertia::render('Ticket', ['ticket' => $ticket]);
     }
 }

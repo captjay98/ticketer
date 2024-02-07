@@ -26,9 +26,11 @@ class Ticket extends Model
     {
         parent::boot();
 
-        static::creating(function ($ticket) {
-            $ticket->serial_number = Str::uuid();
-        });
+        static::creating(
+            function ($ticket) {
+                $ticket->serial_number = Str::uuid();
+            }
+        );
     }
 
     public function user(): belongsTo
