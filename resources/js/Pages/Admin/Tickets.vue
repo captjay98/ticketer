@@ -8,62 +8,68 @@ const { tickets } = defineProps({
 </script>
 <template>
     <AdminLayout>
-        <div class="w-full rounded-md px-4 py-4 m-auto bg-yellow-50/10">
-            <div class="mb-2 mt-1 m-auto w-full px-2 py-2 rounded-md">
-                <h1 class="text-2xl tracking-wide text-center font-semibold py-4">All tickets</h1>
+        <div class="py-4 px-4 m-auto w-full rounded-md bg-yellow-50/10">
+            <div class="py-2 px-2 m-auto mt-1 mb-2 w-full rounded-md">
+                <h1 class="py-4 text-2xl font-semibold tracking-wide text-center">
+                    All tickets
+                </h1>
                 <!-- <Link :href="route('admin.tickets.showcreate')"><p>Create ticket</p></Link> -->
             </div>
             <div v-show="tickets.length < 1">
-                <h1 class="text-xl font-semibold text-center pb-4">No Issued Tickets</h1>
+                <h1 class="pb-4 text-xl font-semibold text-center">
+                    No Issued Tickets
+                </h1>
             </div>
-            <div class="py-1 w-full min-h-screen m-auto rounded-lg overflow-auto">
-                <table class="min-w-full divide-y divide-green-50/300 divide-solid rounded-md">
-                    <thead class="bg-gray-200/40 text-left text-[13px] rounded-lg">
+            <div class="overflow-auto py-1 m-auto w-full min-h-screen rounded-lg">
+                <table class="min-w-full rounded-md divide-y divide-solid divide-green-50/300">
+                    <thead class="text-left rounded-lg bg-gray-200/40 text-[13px]">
                         <tr class="text-left border-inherit">
-                            <th class="px-2 py-2 text-center text-blue-800">ID</th>
-                            <th class="px-2 py-2">Trip</th>
-                            <th class="px-2 py-2">Trip Date</th>
-                            <th class="px-2 py-2">Ticket Type</th>
-                            <th class="px-2 py-2">Seat</th>
-                            <th class="px-2 py-2">Serial</th>
-                            <th class="px-2 py-2">Expiry Date</th>
-                            <th class="px-2 py-2">Date Created</th>
+                            <th class="py-2 px-2 text-center text-blue-800">
+                                ID
+                            </th>
+                            <th class="py-2 px-2">Trip</th>
+                            <th class="py-2 px-2">Trip Date</th>
+                            <th class="py-2 px-2">Ticket Type</th>
+                            <th class="py-2 px-2">Seat</th>
+                            <th class="py-2 px-2">Serial</th>
+                            <th class="py-2 px-2">Expiry Date</th>
+                            <th class="py-2 px-2">Date Created</th>
                         </tr>
                     </thead>
-                    <tbody class="bg-green-50/30 divide-solid rounded-lg">
-                        <tr v-for="ticket in tickets" class="text-[12px] odd:bg-gray-200/40 rounded-md">
-                            <td class="px-2 py-2 font-bold text-blue-800 text-center">
+                    <tbody class="rounded-lg divide-solid bg-green-50/30">
+                        <tr :key="ticket.id" v-for="ticket in tickets" class="rounded-md text-[12px] odd:bg-gray-200/40">
+                            <td class="py-2 px-2 font-bold text-center text-blue-800">
                                 {{ console.log(ticket) }}
                                 {{ ticket.id }}
                             </td>
 
-                            <td class="px-2 py-2 min-w-[100px] max-w-[180px] leading-5">
-                                <Link class="" :href="route('admin.tickets.one', ticket.id)">
+                            <td class="py-2 px-2 leading-5 min-w-[100px] max-w-[180px]">
+                                <Link class="" :href="route('admin.tickets.one', ticket.id)
+                                    ">
                                 {{ ticket.trip.title }}
                                 </Link>
                             </td>
 
-                            <td class="px-2 py-2 min-w-[100px] max-w-[180px] leading-5">
+                            <td class="py-2 px-2 leading-5 min-w-[100px] max-w-[180px]">
                                 {{ ticket.trip.date }}
                             </td>
 
-                            <td class="px-2 py-2 min-w-[100px] max-w-[180px] -auto overflow-hidden leading-5">
+                            <td class="overflow-hidden py-2 px-2 leading-5 min-w-[100px] max-w-[180px] -auto">
                                 {{ ticket.ticket_type.seat_class }}
                             </td>
-                            <td class="px-2 py-2 min-w-[100px] max-w-[180px] leading-5">
+                            <td class="py-2 px-2 leading-5 min-w-[100px] max-w-[180px]">
                                 {{ ticket.seat.seat_number }}
                             </td>
-                            <td class="px-2 py-2 min-w-[100px] max-w-[180px] leading-5">
+                            <td class="py-2 px-2 leading-5 min-w-[100px] max-w-[180px]">
                                 {{ ticket.serial_number }}
                             </td>
-                            <td class="px-2 py-2 min-w-[100px] max-w-[180px] leading-5">
+                            <td class="py-2 px-2 leading-5 min-w-[100px] max-w-[180px]">
                                 {{ ticket.expires_at }}
                             </td>
 
-                            <td class="px-2 py-2 min-w-[100px] max-w-[180px] leading-5">
+                            <td class="py-2 px-2 leading-5 min-w-[100px] max-w-[180px]">
                                 {{ ticket.created_at }}
                             </td>
-
                         </tr>
                     </tbody>
                 </table>

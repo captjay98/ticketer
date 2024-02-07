@@ -118,8 +118,8 @@ class AdminController extends Controller
      */
     public function allTicketTypes()
     {
-        $tickettypes = TicketType::with('trip')->get();
-        return Inertia::render('Admin/TicketTypes', ['tickettypes' => $tickettypes]);
+        $ticket_types = TicketType::with('trip')->get();
+        return Inertia::render('Admin/TicketTypes', ['tickettypes' => $ticket_types]);
     }
 
     /**
@@ -127,8 +127,8 @@ class AdminController extends Controller
      */
     public function oneTicketType($ticket_id)
     {
-        $tickettype = Ticket::get('id', $ticket_id);
-        return Inertia::render('Admin/TicketType', ['tickettype' => $tickettype]);
+        $ticket_type = Ticket::get('id', $ticket_id);
+        return Inertia::render('Admin/TicketType', ['ticket_type' => $ticket_type]);
     }
 
     /**
@@ -146,9 +146,8 @@ class AdminController extends Controller
     public function createTicketType(Request $request)
     {
 
-        $tickettype = TicketType::create($request->only(['seat_class', 'price', 'trip_id']));
-        dd($tickettype);
-        return Inertia::render('Admin/TicketType', ['tickettype' => $tickettype]);
+        $ticket_type = TicketType::create($request->only(['seat_class', 'price', 'trip_id']));
+        return Inertia::render('Admin/TicketType', ['ticket_type' => $ticket_type]);
     }
 
     /**
@@ -188,12 +187,14 @@ class AdminController extends Controller
         $coach_class = $request->only('coach_class');
         $capacity = $request->only('capacity');
         $is_active = $request->only('is_active');
-        $coach = Coach::create([
-            'coach_name' => $coach_name,
-            'coach_class' => $coach_class,
-            'capacity' => $capacity,
-            'is_active' => $is_active,
-        ]);
+        $coach = Coach::create(
+            [
+                'coach_name' => $coach_name,
+                'coach_class' => $coach_class,
+                'capacity' => $capacity,
+                'is_active' => $is_active,
+            ]
+        );
         return redirect(route('admin.coaches.all'));
     }
 
@@ -202,8 +203,10 @@ class AdminController extends Controller
      */
     public function allSeats()
     {
-        $seats = Seat::with('trip', 'coach')->take(100)->get();
-        return Inertia::render('Admin/Seats', ['seats' => $seats]);
+        // $seats = Seat::with('trip', 'coach')->take(100)->get();
+        $seats = Seat::with('trip', 'coach')->paginate(50);
+        // dd($seats);
+        return Inertia::render('Admin/Seats', ['items' => $seats]);
     }
 
     /**
