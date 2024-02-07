@@ -22,22 +22,22 @@ const form = useForm({
 });
 
 const titles = [
-    "KD-ABJ",
-    "KD-KN",
-    "KD-LAG",
-    "ABJ-KD",
-    "ABJ-KN",
-    "ABJ-LAG",
-    "KN-KD",
-    "KN-ABJ",
-    "KN-LAG",
-    "LAG-KD",
-    "LAG-KN",
-    "LAG-ABJ",
-    "LAG-IBD",
-    "LAG-WAR",
-    "WAR-IBD",
-    "WAR-LAG",
+    "KD_ABJ",
+    "KD_KN",
+    "KD_LAG",
+    "ABJ_KD",
+    "ABJ_KN",
+    "ABJ_LAG",
+    "KN_KD",
+    "KN_ABJ",
+    "KN_LAG",
+    "LAG_KD",
+    "LAG_KN",
+    "LAG_ABJ",
+    "LAG_IBD",
+    "LAG_WAR",
+    "WAR_IBD",
+    "WAR_LAG",
 ];
 
 const sources = ["Abuja", "Kaduna", "Kano", "Lagos", "Warri", "Ibadan"];

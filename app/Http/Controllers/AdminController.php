@@ -100,7 +100,7 @@ class AdminController extends Controller
      */
     public function allTickets()
     {
-        $tickets = Ticket::get();
+        $tickets = Ticket::with('trip', 'ticketType', 'seat')->get();
         return Inertia::render('Admin/Tickets', ['tickets' => $tickets]);
     }
 
@@ -146,7 +146,7 @@ class AdminController extends Controller
     public function createTicketType(Request $request)
     {
 
-        $tickettype = TicketType::create($request->only(['seat_class','price','trip_id']));
+        $tickettype = TicketType::create($request->only(['seat_class', 'price', 'trip_id']));
         dd($tickettype);
         return Inertia::render('Admin/TicketType', ['tickettype' => $tickettype]);
     }
@@ -175,7 +175,7 @@ class AdminController extends Controller
      */
     public function showCreateCoach()
     {
-        return Inertia::render('Admin/CreateCoach', );
+        return Inertia::render('Admin/CreateCoach',);
     }
 
     /**
@@ -183,9 +183,7 @@ class AdminController extends Controller
      */
     public function createCoach(Request $request)
     {
-        $validated_data = $request->validate([
-
-        ]);
+        $validated_data = $request->validate([]);
         $coach_name = $request->only('coach_name');
         $coach_class = $request->only('coach_class');
         $capacity = $request->only('capacity');
@@ -197,7 +195,6 @@ class AdminController extends Controller
             'is_active' => $is_active,
         ]);
         return redirect(route('admin.coaches.all'));
-
     }
 
     /**
@@ -205,7 +202,7 @@ class AdminController extends Controller
      */
     public function allSeats()
     {
-        $seats = Seat::with('trip', 'coach', 'ticket')->paginate(20);
+        $seats = Seat::with('trip', 'coach')->take(100)->get();
         return Inertia::render('Admin/Seats', ['seats' => $seats]);
     }
 
@@ -218,5 +215,4 @@ class AdminController extends Controller
         // dd($bookings);
         return Inertia::render('Admin/Bookings', ['bookings' => $bookings]);
     }
-
 }

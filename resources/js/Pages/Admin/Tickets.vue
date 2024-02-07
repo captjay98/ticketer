@@ -31,17 +31,15 @@ const { tickets } = defineProps({
                         </tr>
                     </thead>
                     <tbody class="bg-green-50/30 divide-solid rounded-lg">
-                        <tr
-                            v-for="ticket in tickets"
-                            class="text-[12px] odd:bg-gray-200/40 rounded-md"
-                        >
+                        <tr v-for="ticket in tickets" class="text-[12px] odd:bg-gray-200/40 rounded-md">
                             <td class="px-2 py-2 font-bold text-blue-800 text-center">
+                                {{ console.log(ticket) }}
                                 {{ ticket.id }}
                             </td>
 
                             <td class="px-2 py-2 min-w-[100px] max-w-[180px] leading-5">
                                 <Link class="" :href="route('admin.tickets.one', ticket.id)">
-                                    {{ ticket.trip.title }}
+                                {{ ticket.trip.title }}
                                 </Link>
                             </td>
 
@@ -49,24 +47,23 @@ const { tickets } = defineProps({
                                 {{ ticket.trip.date }}
                             </td>
 
-                            <td
-                                class="px-2 py-2 min-w-[100px] max-w-[180px] -auto overflow-hidden leading-5"
-                            >
-                                {{ ticket.tickettype }}
+                            <td class="px-2 py-2 min-w-[100px] max-w-[180px] -auto overflow-hidden leading-5">
+                                {{ ticket.ticket_type.seat_class }}
                             </td>
                             <td class="px-2 py-2 min-w-[100px] max-w-[180px] leading-5">
-                                {{ ticket.seat }}
+                                {{ ticket.seat.seat_number }}
                             </td>
                             <td class="px-2 py-2 min-w-[100px] max-w-[180px] leading-5">
-                                {{ ticket.expirry_date }}
+                                {{ ticket.serial_number }}
+                            </td>
+                            <td class="px-2 py-2 min-w-[100px] max-w-[180px] leading-5">
+                                {{ ticket.expires_at }}
                             </td>
 
                             <td class="px-2 py-2 min-w-[100px] max-w-[180px] leading-5">
                                 {{ ticket.created_at }}
                             </td>
-                            <td class="px-2 py-2 min-w-[100px] max-w-[180px] leading-5">
-                                {{ ticket.serial }}
-                            </td>
+
                         </tr>
                     </tbody>
                 </table>
