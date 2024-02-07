@@ -16,7 +16,7 @@ RUN composer install --no-interaction --optimize-autoloader --no-dev && composer
 RUN npm install && npm run build && npm cache clean --force
 RUN composer dump-autoload --optimize
 
-RUN php artisan cache:clear && php artisan route:cache
+RUN php artisan storage:link && php artisan cache:clear && php artisan route:cache
 
 ENTRYPOINT ["php", "artisan", "octane:frankenphp"]
 
