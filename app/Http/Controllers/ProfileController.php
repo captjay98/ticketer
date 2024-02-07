@@ -24,7 +24,7 @@ class ProfileController extends Controller
             'Traveller/TProfile',
             [
                 'user' => $user,
-                'trips' => Booking::with('user','seat','seat.coach','trip','ticket',)->where('user_id', $user->id)->get(),
+                'trips' => Booking::with('user', 'seat', 'seat.coach', 'trip', 'ticket',)->where(['user_id' => $user->id, 'status' => 'succesful'])->get(),
                 'mustVerifyEmail' => $request->user() instanceof MustVerifyEmail,
                 'status' => session('status'),
             ]
