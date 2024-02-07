@@ -1,7 +1,7 @@
 FROM dunglas/frankenphp
 
 
-RUN apt-get update apt-get install -y git nodejs npm
+RUN apt-get update && apt-get install -y git nodejs npm
 
 RUN install-php-extensions pdo pdo_pgsql pgsql zip exif pcntl gd imagick sockets
 
