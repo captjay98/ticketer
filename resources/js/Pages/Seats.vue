@@ -46,6 +46,7 @@ const selectSeat = (seat) => {
                     <div v-if="oneSeat?.coach?.coach_class === 'Economy'"
                         class="grid grid-cols-6 gap-3 justify-center items-center px-1 pt-10 pb-4 bg-green-100 max-sm:gap-2">
                         <div v-for="seat in seats" :key="seat.id"
+                            :disabled="seat.status === 'booked' || seat.status === 'reserved'"
                             class="flex justify-center items-center py-2 px-2 w-6 h-7 text-sm bg-green-300 rounded-b-sm rounded-t-lg odd:mx-3 max-sm:w-[1.2rem] max-sm:h-[1.5rem]"
                             :class="{
                                 'bg-white shadow-2xl': selectedSeat === seat.id,
