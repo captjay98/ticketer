@@ -1,29 +1,38 @@
 <?php
 
-namespace Tests\Feature;
-
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
-use Tests\TestCase;
+use App\Models\User;
 
-class AdminTest extends TestCase
-{
-    /**
-     * A basic feature test example.
-     */
-    public function test_admin_dashboard_can_render(): void
-    {
-        $this->withoutMiddleware();
-        $response = $this->get('/admin/dashboard');
+beforeEach(function () {
+    $this->adminUser = User::factory()->create(['is_staff' => true, 'account_type' => 'staff']);
+    $this->actingAs($this->adminUser);
+});
 
-        $response->assertStatus(200);
-    }
+afterEach(function () {
+    $this->adminUser->delete();
+});
 
-    public function test_admin_users_page_can_render(): void
-    {
-        $this->withoutMiddleware();
-        $response = $this->get('/admin/users');
+test('admin dashboard can render', function () {
+    $response = $this->get('/admin/dashboard');
+    $response->assertStatus(200);
+});
 
-        $response->assertStatus(200);
-    }
-}
+test('admin users page can render', function () {
+    $response = $this->get('/admin/users');
+    $response->assertStatus(200);
+});
+
+test('admin dashboard cannot render for other users', function () {
+    $this->user = User::factory()->create(['is_staff' => false, 'account_type' => 'customer']);
+    $this->actingAs($this->user);
+    $response = $this->get('/admin/dashboard');
+    $response->assertStatus(403);
+});
+
+test('admin users page cannot render for other users', function () {
+    $this->user = User::factory()->create(['is_staff' => false, 'account_type' => 'customer']);
+    $this->actingAs($this->user);
+    $response = $this->get('/admin/users');
+    $response->assertStatus(403);
+});
