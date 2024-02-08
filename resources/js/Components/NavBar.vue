@@ -25,7 +25,8 @@ const drop = ref(false);
 
 <template>
     <nav class="hidden text-sm font-semibold md:flex">
-        <ul :key="link.name" v-for="link in links" class="flex">
+        <ul :key="link.name" v-for="link in  links " class="flex"
+            :class="{ 'hidden': user && (link.name === 'Register' || link.name === 'Login') }">
             <li class="ml-10 rounded-md border-green-500 hover:text-green-500 hover:underline hover:underline-offset-4">
                 <Link :href="link.path">{{ link.name }}</Link>
             </li>
@@ -53,7 +54,7 @@ const drop = ref(false);
         <nav v-show="drop"
             class="absolute right-3 top-12 z-10 bg-green-500/100 text-slate-800 rounded-md transition-all ease-in duration-400">
             <div class="py-4 px-4 tracking-wider   rounded-md">
-                <ul :key="link.name" v-for="link in links" class="py-2 px-2 text-left">
+                <ul :key="link.name" v-for=" link  in  links " class="py-2 px-2 text-left">
                     <li>
                         <Link :href="link.path">{{ link.name }}</Link>
                     </li>
