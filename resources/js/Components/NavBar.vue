@@ -9,12 +9,14 @@ defineProps({
 
 const customer = "customer";
 const admin = "admin";
+const staff = "staff";
+const superuser = "superuser";
 
 const user = usePage().props.auth.user;
 
 const showLink = (accounttype) => {
     if (user) {
-        return user.accounttype == accounttype;
+        return user.account_type == accounttype;
     }
 };
 
@@ -29,10 +31,16 @@ const drop = ref(false);
             </li>
         </ul>
         <ul>
-            <li class="ml-2 hover:text-blue-700" v-show="showLink(customer)">
+            <li class="ml-8 hover:text-blue-700" v-show="showLink(customer)">
                 <Link :href="route('profile.edit')">Dashboard</Link>
             </li>
-            <li class="ml-2 hover:text-black" v-show="showLink(admin)">
+            <li class="ml-8 hover:text-black" v-show="showLink(superuser)">
+                <Link :href="route('admin.dashboard')">Dashboard</Link>
+            </li>
+            <li class="ml-8 hover:text-black" v-show="showLink(admin)">
+                <Link :href="route('admin.dashboard')">Dashboard</Link>
+            </li>
+            <li class="ml-8 hover:text-black" v-show="showLink(staff)">
                 <Link :href="route('admin.dashboard')">Dashboard</Link>
             </li>
         </ul>
@@ -54,7 +62,7 @@ const drop = ref(false);
                     <li v-show="showLink(customer)">
                         <Link :href="route('profile.edit')">Dashboard</Link>
                     </li>
-                    <li v-show="showLink(admin)">
+                    <li v-show="showLink(admin || staff || superuser)">
                         <Link :href="route('admin.dashboard')">Dashboard</Link>
                     </li>
                 </ul>
