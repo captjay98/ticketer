@@ -203,8 +203,7 @@ class AdminController extends Controller
      */
     public function allSeats()
     {
-        // $seats = Seat::with('trip', 'coach')->take(100)->get();
-        $seats = Seat::with('trip', 'coach')->paginate(50);
+        $seats = Seat::with('trip', 'coach')->orderBy('updated_at', 'desc')->paginate(50);
         // dd($seats);
         return Inertia::render('Admin/Seats', ['items' => $seats]);
     }
