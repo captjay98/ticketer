@@ -11,13 +11,14 @@ return new class() extends Migration
      */
     public function up(): void
     {
-        Schema::create('coach_trips', function (Blueprint $table) {
-            $table->integer('trip_id');
-            $table->integer('coach_id');
-            $table->foreign('trip_id')->references('id')->on('trips')->onDelete('cascade');
-            $table->foreign('coach_id')->references('id')->on('coaches')->onDelete('cascade');
-            $table->timestamps();
-        });
+        Schema::create(
+            'coach_trips',
+            function (Blueprint $table) {
+                $table->foreignId('trip_id')->onDelete('cascade');
+                $table->foreignId('coach_id')->onDelete('cascade');
+                $table->timestamps();
+            }
+        );
     }
 
     /**

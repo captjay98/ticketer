@@ -10,23 +10,26 @@ return new class () extends Migration {
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('avatar')->nullable();
-            $table->string('first_name');
-            $table->string('last_name');
-            $table->string('email')->unique();
-            $table->string('phone_number')->unique();
-            $table->string('account_type')->enum('customer', 'admin', 'staff', 'superuser');
-            $table->boolean('is_active')->default('true');
-            $table->boolean('is_superuser')->default('false');
-            $table->boolean('is_admin')->default('false');
-            $table->boolean('is_staff')->default('false');
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
-            $table->timestamps();
-        });
+        Schema::create(
+            'users',
+            function (Blueprint $table) {
+                $table->bigIncrements('id');
+                $table->string('avatar')->nullable();
+                $table->string('first_name');
+                $table->string('last_name');
+                $table->string('email')->unique();
+                $table->string('phone_number')->unique();
+                $table->string('account_type')->enum('customer', 'admin', 'staff', 'superuser');
+                $table->boolean('is_active')->default(true);
+                $table->boolean('is_superuser')->default(false);
+                $table->boolean('is_admin')->default(false);
+                $table->boolean('is_staff')->default(false);
+                $table->timestamp('email_verified_at')->nullable();
+                $table->string('password');
+                $table->rememberToken();
+                $table->timestamps();
+            }
+        );
     }
 
     /**

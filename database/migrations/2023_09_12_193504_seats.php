@@ -17,11 +17,9 @@ return new class() extends Migration
                 $table->bigIncrements('id');
                 $table->string('seat_number');
                 $table->string('seat_position')->nullable();
-                $table->integer('trip_id');
-                $table->integer('coach_id');
+                $table->foreignId('trip_id')->onDelete('cascade');
+                $table->foreignId('coach_id');
                 $table->string('status')->default('available')->enum('available', 'reserved', 'booked');
-                $table->foreign('trip_id')->references('id')->on('trips')->onDelete('cascade');
-                $table->foreign('coach_id')->references('id')->on('coaches');
                 $table->timestamps();
             }
         );
