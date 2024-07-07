@@ -42,9 +42,9 @@ class TicketController extends Controller
                 Trip: {$booking->trip->title}-{$booking->trip->date}\n
                 Expires: {$booking->trip->departure_time}";
 
-        $qrCode = QrCode::format('png')->size(200)->generate($data);
-        $qrCodePath = "qrcodes/{$ticket->id}.png";
-        Storage::disk('public')->put($qrCodePath, $qrCode);
+        // $qrCode = QrCode::format('png')->size(200)->generate($data);
+        // $qrCodePath = "qrcodes/{$ticket->id}.png";
+        // Storage::disk('public')->put($qrCodePath, $qrCode);
 
         $ticket->update(['qr_code' => $qrCodePath]);
         $booking->update(['ticket_id' => $ticket->id]);
